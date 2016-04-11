@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.EntryPoint", "Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Infrastructure", "PathFinder.Infrastructure\PathFinder.Infrastructure.csproj", "{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{EFCDC958-6337-4582-A604-2143D6400F5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Security.DAL", "PathFinder.Security.DAL\PathFinder.Security.DAL.csproj", "{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +25,15 @@ Global
 		{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3} = {EFCDC958-6337-4582-A604-2143D6400F5C}
 	EndGlobalSection
 EndGlobal
