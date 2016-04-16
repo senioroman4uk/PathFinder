@@ -2,8 +2,7 @@
 
 namespace PathFinder.Security.DAL.Entities
 {
-    public class AppRole : IdentityRole<int, AppUserRole>
+    public class AppUserClaim : IdentityUserClaim<int>
     {
-
     }
 }
