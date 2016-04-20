@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Security.DAL", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Security.WebApi", "PathFinder.Security.WebApi\PathFinder.Security.WebApi.csproj", "{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PathFinder.Database", "PathFinder.Database\PathFinder.Database.sqlproj", "{5C9BE859-07C3-4A74-952E-631E2AA6AE56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,12 @@ Global
 		{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9BE859-07C3-4A74-952E-631E2AA6AE56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C9BE859-07C3-4A74-952E-631E2AA6AE56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C9BE859-07C3-4A74-952E-631E2AA6AE56}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5C9BE859-07C3-4A74-952E-631E2AA6AE56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C9BE859-07C3-4A74-952E-631E2AA6AE56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9BE859-07C3-4A74-952E-631E2AA6AE56}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
