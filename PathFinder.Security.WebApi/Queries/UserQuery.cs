@@ -16,7 +16,13 @@ namespace PathFinder.Security.WebApi.Queries
         {
             _appUserManager = userManager;
         }
-        
-        public IOrderedQueryable<AppUser> Users => (IOrderedQueryable<AppUser>) _appUserManager.Users;
+
+        public IOrderedQueryable<AppUser> Users
+        {
+            get
+            {
+                return (IOrderedQueryable<AppUser>)_appUserManager.Users;
+            }
+        }
     }
 }

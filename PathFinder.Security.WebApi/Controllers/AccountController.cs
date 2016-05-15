@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -35,7 +36,7 @@ namespace PathFinder.Security.WebApi.Controllers
                 return new StatusCodeResult((HttpStatusCode)422, this);
 
             var user = model.ToUserEntity();
-            return Created($"account/users/{id}", user);
+            return Created(String.Format("account/users/{0}", id), user);
         }
 
         [HttpGet]
