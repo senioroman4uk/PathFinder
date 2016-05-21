@@ -1,54 +1,61 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
-using PathFinder.Infrastructure.Constants;
 using PathFinder.Security.DAL.Entities;
+using PathFinder.Security.DAL.Managers;
 using PathFinder.Security.WebApi.Commands;
+using PathFinder.Security.WebApi.Constants;
 using PathFinder.Security.WebApi.Mappers;
 using PathFinder.Security.WebApi.Models;
-using PathFinder.Security.WebApi.Queries;
 
 namespace PathFinder.Security.WebApi.Controllers
 {
-    [RoutePrefix(CommonRouteConstants.RouteBase)]
+    [RoutePrefix(SecurityRouteConstants.AccountControllerRoutePrefix)]
     public class AccountController : ApiController
     {
         private readonly IRegisterUserCommand _registerUserCommand;
-        private readonly IUserQuery _userQuery;
+        private readonly AppUserManager _userManager;
 
-        public AccountController(IRegisterUserCommand command, IUserQuery query)
+        public AccountController(IRegisterUserCommand command, AppUserManager userManager)
         {
             _registerUserCommand = command;
-            _userQuery = query;
+            _userManager = userManager;
         }
 
+        /// <summary>
+        /// Registers new user into the system
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        [Route("account/register")]
+        [Route(SecurityRouteConstants.Register)]
         public async Task<IHttpActionResult> Register(RegisterUserModel model)
         {
-            int? id = await _registerUserCommand.RegisterUser(model);
+            AppUser user = await _registerUserCommand.RegisterUser(model);
 
-            if (!id.HasValue)
+            if (user == null)
                 return new StatusCodeResult((HttpStatusCode)422, this);
 
-            var user = model.ToUserEntity();
-            return Created(String.Format("account/users/{0}", id), user);
+            return Created(String.Format(EntityReturnUrls.UserEndPoint, user.Id), user);
         }
 
+        /// <summary>
+        /// Finds user by id
+        /// </summary>
+        /// <param name="id">user identifier</param>
         [HttpGet]
         [Authorize]
-        [Route("account/users/{id}")]
-        public IHttpActionResult GetUser(int id)
+        [Route(SecurityRouteConstants.GetUser)]
+        public async Task<IHttpActionResult> GetUser(int id)
         {
-            AppUser user = _userQuery.Users.FirstOrDefault(u => u.Id == id);
+            AppUser user = await _userManager.FindByIdAsync(id);
             if (user == null)
                 return NotFound();
 
-            var model = user.ToUserModel();
+            UserModel model = user.ToUserModel();
             return Ok(model);
         }
     }

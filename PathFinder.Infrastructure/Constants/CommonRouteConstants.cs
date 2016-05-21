@@ -6,6 +6,8 @@
 
         public const string Tilde = "~/";
 
+        public const string Slash = "/";
+
         public const string Id = "{id:int}";
 
         public const string Empty = "";

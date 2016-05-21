@@ -1,5 +1,4 @@
 ﻿using PathFinder.Cars.WebApi.Package;
-using PathFinder.Security.DAL.Package;
 using PathFinder.Security.WebApi.Package;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
@@ -20,8 +19,7 @@ namespace PathFinder.EntryPoint
         {
             container.RegisterPackages(new[]
             {
-                typeof(SecurityDalPackage).Assembly,
-                typeof(SecurityWebApiPackage).Assembly,
+                typeof(SecurityPackage).Assembly,
                 typeof(CarsPackage).Assembly
             });
             container.Verify();

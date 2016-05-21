@@ -8,7 +8,6 @@ using PathFinder.Infrastructure.Extensions;
 using PathFinder.Infrastructure.Providers;
 using PathFinder.Security.DAL.Context;
 using PathFinder.Security.DAL.Managers;
-using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 
 [assembly: OwinStartup(typeof(Startup))]
