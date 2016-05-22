@@ -11,6 +11,8 @@ namespace PathFinder.Infrastructure.Providers
     {
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
+            await Task.Yield();
+
             context.Validated();
         }
 
