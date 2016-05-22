@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Http;
 
 namespace PathFinder.Trips.WebApi.Models
 {
@@ -13,6 +14,14 @@ namespace PathFinder.Trips.WebApi.Models
 
         public GooglePlaceModel EndPoint { get; set; }
 
-        public IEnumerable<GooglePlaceModel> WayPoints { get; set; }
+        public IEnumerable<WayPointModel> WayPoints { get; set; }
+
+        public string Algorithm { get; set; }
+    }
+
+    public class Route
+    {
+        public IList<int> Sequence { get; set; }
+        public int Distanse { get; set; }
     }
 }

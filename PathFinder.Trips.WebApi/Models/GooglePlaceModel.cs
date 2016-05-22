@@ -12,6 +12,6 @@ namespace PathFinder.Trips.WebApi.Models
         [JsonProperty("place_id")]
         public string PlaceId { get; set; }
 
-        public Geometry Geometry { get; set; }
+        public GeometryModel Geometry { get; set; }
     }
 }

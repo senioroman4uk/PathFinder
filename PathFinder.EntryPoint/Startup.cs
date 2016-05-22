@@ -5,9 +5,9 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using PathFinder.EntryPoint;
 using PathFinder.Infrastructure.Extensions;
-using PathFinder.Infrastructure.Providers;
 using PathFinder.Security.DAL.Context;
 using PathFinder.Security.DAL.Managers;
+using PathFinder.Security.WebApi.Providers;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 

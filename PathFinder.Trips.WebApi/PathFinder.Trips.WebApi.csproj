@@ -43,6 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -60,9 +61,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Geometry.cs" />
+    <Compile Include="Constants\TripsRouteConstants.cs" />
+    <Compile Include="Constants\ValidationConstants.cs" />
+    <Compile Include="Extensions\DestinationMatrixResponseModelMapper.cs" />
+    <Compile Include="Extensions\DoubleExtensions.cs" />
+    <Compile Include="Extensions\LocationModelExtensions.cs" />
+    <Compile Include="Models\DistanseMatrixResponseModel.cs" />
+    <Compile Include="Models\Distance.cs" />
+    <Compile Include="Models\Duration.cs" />
+    <Compile Include="Models\Element.cs" />
+    <Compile Include="Models\GeometryModel.cs" />
     <Compile Include="Models\GooglePlaceModel.cs" />
-    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\LocationModel.cs" />
+    <Compile Include="Models\Row.cs" />
+    <Compile Include="Models\WayPointModel.cs" />
     <Compile Include="Patterns\Factory\IRouteSearchAlgorithmFactory.cs" />
     <Compile Include="Patterns\Factory\RouteSearchAlgorithmFactory.cs" />
     <Compile Include="Patterns\Strategy\IGreadyRouteSearchAlgorithm.cs" />
@@ -71,7 +83,9 @@
     <Compile Include="Models\TripReadModel.cs" />
     <Compile Include="Controllers\TripsController.cs" />
     <Compile Include="Package\TripsPackage.cs" />
+    <Compile Include="Queries\DistanceMatrixQuery.cs" />
     <Compile Include="Services\RouteService.cs" />
+    <Compile Include="Validators\DistanseMatrixResponseValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PathFinder.Infrastructure\PathFinder.Infrastructure.csproj">

@@ -71,7 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\RouteConstants\CarsRouteConstants.cs" />
+    <Compile Include="Constants\CarsRouteConstants.cs" />
     <Compile Include="Controllers\CarBrandsQueryController.cs" />
     <Compile Include="Controllers\CarColorsQueryController.cs" />
     <Compile Include="Controllers\CarModelsQueryController.cs" />
