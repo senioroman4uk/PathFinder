@@ -8,32 +8,27 @@ using PathFinder.Infrastructure.Extensions;
 using PathFinder.Infrastructure.Providers;
 using PathFinder.Security.DAL.Context;
 using PathFinder.Security.DAL.Managers;
+using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 
 [assembly: OwinStartup(typeof(Startup))]
-
 namespace PathFinder.EntryPoint
 {
     public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            var container = SimpleInjectorConfiguration.ConfigurationSimpleInjector();
+            // CORS needs to be first in the pipeline
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
+            var container = SimpleInjectorConfiguration.ConfigurationSimpleInjector();
             app.UseSimpleInjectorContext(container);
             app.CreatePerOwinContext(container.GetInstance<SecurityContext>);
             app.CreatePerOwinContext(container.GetInstance<AppUserManager>);
 
             ConfigureOAuth(app);
+            HttpConfiguration configuration = ConfigureWebApi(container);
 
-            HttpConfiguration configuration = new HttpConfiguration
-            {
-                DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container)
-            };
-            configuration.MapHttpAttributeRoutes();
-            configuration.EnsureInitialized();
-
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(configuration);
         }
 
@@ -50,6 +45,18 @@ namespace PathFinder.EntryPoint
             // Token Generation
             app.UseOAuthAuthorizationServer(oAuthServerOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+        }
+
+        private HttpConfiguration ConfigureWebApi(Container container)
+        {
+            HttpConfiguration configuration = new HttpConfiguration
+            {
+                DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container),
+            };
+            configuration.MapHttpAttributeRoutes();
+            configuration.EnsureInitialized();
+
+            return configuration;
         }
     }
 }
