@@ -17,6 +17,8 @@ namespace PathFinder.Trips.WebApi.Models
         public IEnumerable<WayPointModel> WayPoints { get; set; }
 
         public string Algorithm { get; set; }
+
+        public Route Route { get; set; }
     }
 
     public class Route

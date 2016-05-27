@@ -16,10 +16,13 @@ namespace PathFinder.Trips.DAL.Model
     {
         public int Id { get; set; }
         public int TripId { get; set; }
-        public int PassangerId { get; set; }
         public System.Data.Entity.Spatial.DbGeography Coordinates { get; set; }
+        public string FormattedAddress { get; set; }
+        public string Name { get; set; }
+        public string PlaceId { get; set; }
+        public int IsStart { get; set; }
+        public int IsEnd { get; set; }
     
-        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Trip Trip { get; set; }
     }
 }

@@ -14,12 +14,6 @@ namespace PathFinder.Trips.DAL.Model
     
     public partial class AspNetUser
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AspNetUser()
-        {
-            this.IntermediatePoints = new HashSet<IntermediatePoint>();
-        }
-    
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -36,8 +30,5 @@ namespace PathFinder.Trips.DAL.Model
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IntermediatePoint> IntermediatePoints { get; set; }
     }
 }

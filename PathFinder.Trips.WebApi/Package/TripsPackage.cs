@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Http;
+using PathFinder.Trips.DAL.Model;
 using PathFinder.Trips.WebApi.Patterns.Factory;
 using PathFinder.Trips.WebApi.Queries;
 using PathFinder.Trips.WebApi.Services;
@@ -16,6 +17,7 @@ namespace PathFinder.Trips.WebApi.Package
             container.Register<IRouteService, RouteService>(Lifestyle.Singleton);
             container.Register(() => new HttpClient(), Lifestyle.Singleton);
             container.Register<IDistanceMatrixQuery, DistanceMatrixQuery>(Lifestyle.Scoped);
+            container.Register<TripsContext>(Lifestyle.Scoped);
         }
     }
 }

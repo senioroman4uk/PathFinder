@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.EntryPoint", "PathFinder.EntryPoint\PathFinder.EntryPoint.csproj", "{C73D022D-F082-4CD6-A2CD-44901567D278}"
 EndProject
@@ -26,6 +26,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Trips.DAL", "PathFinder.Trips.DAL\PathFinder.Trips.DAL.csproj", "{D4029077-E638-4597-AB34-C2ADC2799042}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Trips.WebApi", "PathFinder.Trips.WebApi\PathFinder.Trips.WebApi.csproj", "{7E0079DC-036A-48BE-AD0C-3122B2012DF1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5A533587-81CC-41C1-AAF2-10562DAE2DFE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cars", "Cars", "{40F98385-AB7B-4ABD-B318-4564A9E8A991}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarsControllersTests", "CarsControllersTests\CarsControllersTests.csproj", "{62F675BA-6F70-4EF0-BDB2-CFBFD595775E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Tests.Infrastructure", "PathFinder.Tests.Infrastructure\PathFinder.Tests.Infrastructure.csproj", "{63248750-5E2A-4A66-8A0A-2150A1A88347}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +79,14 @@ Global
 		{7E0079DC-036A-48BE-AD0C-3122B2012DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E0079DC-036A-48BE-AD0C-3122B2012DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E0079DC-036A-48BE-AD0C-3122B2012DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62F675BA-6F70-4EF0-BDB2-CFBFD595775E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F675BA-6F70-4EF0-BDB2-CFBFD595775E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F675BA-6F70-4EF0-BDB2-CFBFD595775E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F675BA-6F70-4EF0-BDB2-CFBFD595775E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63248750-5E2A-4A66-8A0A-2150A1A88347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63248750-5E2A-4A66-8A0A-2150A1A88347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63248750-5E2A-4A66-8A0A-2150A1A88347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63248750-5E2A-4A66-8A0A-2150A1A88347}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,5 +98,8 @@ Global
 		{F979614E-8163-4371-9DA5-4FDCA6E36B62} = {669AF69D-78FA-45B1-82F6-DCB87D3AD486}
 		{D4029077-E638-4597-AB34-C2ADC2799042} = {3CB61A76-981D-44E1-AEEA-50E89DF1DF60}
 		{7E0079DC-036A-48BE-AD0C-3122B2012DF1} = {3CB61A76-981D-44E1-AEEA-50E89DF1DF60}
+		{40F98385-AB7B-4ABD-B318-4564A9E8A991} = {5A533587-81CC-41C1-AAF2-10562DAE2DFE}
+		{62F675BA-6F70-4EF0-BDB2-CFBFD595775E} = {40F98385-AB7B-4ABD-B318-4564A9E8A991}
+		{63248750-5E2A-4A66-8A0A-2150A1A88347} = {5A533587-81CC-41C1-AAF2-10562DAE2DFE}
 	EndGlobalSection
 EndGlobal

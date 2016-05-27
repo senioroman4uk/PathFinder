@@ -8,8 +8,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
+using PathFinder.Trips.DAL.Model;
 using PathFinder.Trips.WebApi.Constants;
 using PathFinder.Trips.WebApi.Extensions;
+using PathFinder.Trips.WebApi.Mappers;
 using PathFinder.Trips.WebApi.Models;
 using PathFinder.Trips.WebApi.Patterns.Factory;
 using PathFinder.Trips.WebApi.Patterns.Strategy;
@@ -32,6 +34,8 @@ namespace PathFinder.Trips.WebApi.Controllers
         /// <summary>   The route service. </summary>
         private readonly IRouteService _routeService;
 
+        private readonly TripsContext _context;
+
         /// <summary>   Constructor. </summary>
         ///
         /// <remarks>   Vladyslav, 24.05.2016. </remarks>
@@ -39,10 +43,11 @@ namespace PathFinder.Trips.WebApi.Controllers
         /// <param name="distanceMatrixQuery">  The distance matrix query. </param>
         /// <param name="routeService">         The route service. </param>
 
-        public TripsController(IDistanceMatrixQuery distanceMatrixQuery, IRouteService routeService)
+        public TripsController(IDistanceMatrixQuery distanceMatrixQuery, IRouteService routeService, TripsContext context)
         {
             _distanceMatrixQuery = distanceMatrixQuery;
             _routeService = routeService;
+            _context = context;
         }
 
         /// <summary>   (An Action that handles HTTP POST requests) creates a trip. </summary>
@@ -69,7 +74,10 @@ namespace PathFinder.Trips.WebApi.Controllers
                 throw new ApplicationException("Invalid response from distanse matrix API");
 
             double[,] matrix = distanseMatrixModel.ToArray();
-            Route route = _routeService.CalculateRoute(matrix, 0, waypoints.Count, model.Algorithm);
+            Route route = _routeService.CalculateRoute(matrix, 0, waypoints.Count - 1, model.Algorithm);
+            var trip = model.ToEntity();
+            _context.Trips.Add(trip);
+            await _context.SaveChangesAsync();
 
             return Ok(route);
         }

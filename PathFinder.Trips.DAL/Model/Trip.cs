@@ -28,8 +28,6 @@ namespace PathFinder.Trips.DAL.Model
         public bool IsRegular { get; set; }
         public decimal Price { get; set; }
         public int Places { get; set; }
-        public System.Data.Entity.Spatial.DbGeography StartPoint { get; set; }
-        public System.Data.Entity.Spatial.DbGeography EndPoint { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IntermediatePoint> IntermediatePoints { get; set; }

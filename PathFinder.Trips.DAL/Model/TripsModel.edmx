@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Trips.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PathFinder.DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,8 +32,12 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TripId" Type="int" Nullable="false" />
-          <Property Name="PassangerId" Type="int" Nullable="false" />
           <Property Name="Coordinates" Type="geography" Nullable="false" />
+          <Property Name="FormattedAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PlaceId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsStart" Type="int" Nullable="false" />
+          <Property Name="IsEnd" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Trips">
           <Key>
@@ -47,21 +51,7 @@
           <Property Name="IsRegular" Type="bit" Nullable="false" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Places" Type="int" Nullable="false" />
-          <Property Name="StartPoint" Type="geography" Nullable="false" />
-          <Property Name="EndPoint" Type="geography" Nullable="false" />
         </EntityType>
-        <Association Name="FkIntermediatePoints_PassangerId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="IntermediatePoints" Type="Self.IntermediatePoints" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="IntermediatePoints">
-              <PropertyRef Name="PassangerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FkTrips_TripId">
           <End Role="Trips" Type="Self.Trips" Multiplicity="1" />
           <End Role="IntermediatePoints" Type="Self.IntermediatePoints" Multiplicity="*" />
@@ -74,14 +64,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TripsModelStoreContainer">
+        <EntityContainer Name="PathFinderDatabaseModelStoreContainer">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IntermediatePoints" EntityType="Self.IntermediatePoints" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trips" EntityType="Self.Trips" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FkIntermediatePoints_PassangerId" Association="Self.FkIntermediatePoints_PassangerId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="IntermediatePoints" EntitySet="IntermediatePoints" />
-          </AssociationSet>
           <AssociationSet Name="FkTrips_TripId" Association="Self.FkTrips_TripId">
             <End Role="Trips" EntitySet="Trips" />
             <End Role="IntermediatePoints" EntitySet="IntermediatePoints" />
@@ -91,7 +77,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Trips.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PathFinder.DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -112,7 +98,6 @@
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="IntermediatePoints" Relationship="Self.FkIntermediatePoints_PassangerId" FromRole="AspNetUsers" ToRole="IntermediatePoints" />
         </EntityType>
         <EntityType Name="IntermediatePoint">
           <Key>
@@ -120,9 +105,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TripId" Type="Int32" Nullable="false" />
-          <Property Name="PassangerId" Type="Int32" Nullable="false" />
           <Property Name="Coordinates" Type="Geography" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FkIntermediatePoints_PassangerId" FromRole="IntermediatePoints" ToRole="AspNetUsers" />
+          <Property Name="FormattedAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PlaceId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsStart" Type="Int32" Nullable="false" />
+          <Property Name="IsEnd" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Trip" Relationship="Self.FkTrips_TripId" FromRole="IntermediatePoints" ToRole="Trips" />
         </EntityType>
         <EntityType Name="Trip">
@@ -137,22 +125,8 @@
           <Property Name="IsRegular" Type="Boolean" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Places" Type="Int32" Nullable="false" />
-          <Property Name="StartPoint" Type="Geography" Nullable="false" />
-          <Property Name="EndPoint" Type="Geography" Nullable="false" />
           <NavigationProperty Name="IntermediatePoints" Relationship="Self.FkTrips_TripId" FromRole="Trips" ToRole="IntermediatePoints" />
         </EntityType>
-        <Association Name="FkIntermediatePoints_PassangerId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1" />
-          <End Role="IntermediatePoints" Type="Self.IntermediatePoint" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="IntermediatePoints">
-              <PropertyRef Name="PassangerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FkTrips_TripId">
           <End Role="Trips" Type="Self.Trip" Multiplicity="1" />
           <End Role="IntermediatePoints" Type="Self.IntermediatePoint" Multiplicity="*" />
@@ -165,14 +139,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TripsContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="IntermediatePoints" EntityType="Self.IntermediatePoint" />
           <EntitySet Name="Trips" EntityType="Self.Trip" />
-          <AssociationSet Name="FkIntermediatePoints_PassangerId" Association="Self.FkIntermediatePoints_PassangerId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="IntermediatePoints" EntitySet="IntermediatePoints" />
-          </AssociationSet>
           <AssociationSet Name="FkTrips_TripId" Association="Self.FkTrips_TripId">
             <End Role="Trips" EntitySet="Trips" />
             <End Role="IntermediatePoints" EntitySet="IntermediatePoints" />
@@ -183,9 +153,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TripsModelStoreContainer" CdmEntityContainer="TripsContext">
+        <EntityContainerMapping StorageEntityContainer="PathFinderDatabaseModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="Trips.Model.AspNetUser">
+            <EntityTypeMapping TypeName="PathFinder.DatabaseModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -207,17 +177,21 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IntermediatePoints">
-            <EntityTypeMapping TypeName="Trips.Model.IntermediatePoint">
+            <EntityTypeMapping TypeName="PathFinder.DatabaseModel.IntermediatePoint">
               <MappingFragment StoreEntitySet="IntermediatePoints">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TripId" ColumnName="TripId" />
-                <ScalarProperty Name="PassangerId" ColumnName="PassangerId" />
                 <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+                <ScalarProperty Name="FormattedAddress" ColumnName="FormattedAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PlaceId" ColumnName="PlaceId" />
+                <ScalarProperty Name="IsStart" ColumnName="IsStart" />
+                <ScalarProperty Name="IsEnd" ColumnName="IsEnd" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Trips">
-            <EntityTypeMapping TypeName="Trips.Model.Trip">
+            <EntityTypeMapping TypeName="PathFinder.DatabaseModel.Trip">
               <MappingFragment StoreEntitySet="Trips">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DriverId" ColumnName="DriverId" />
@@ -227,8 +201,6 @@
                 <ScalarProperty Name="IsRegular" ColumnName="IsRegular" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Places" ColumnName="Places" />
-                <ScalarProperty Name="StartPoint" ColumnName="StartPoint" />
-                <ScalarProperty Name="EndPoint" ColumnName="EndPoint" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

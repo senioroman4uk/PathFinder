@@ -30,27 +30,28 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
         {
             HashSet<int> route = new HashSet<int>(new[] { origin });
             int distanse = 0;
-            int waypointsToFind = weights.GetLength(0) - 1;
+            int waypointsToFind = weights.GetLength(0) - 2;
+            int previous = 0;
 
             // we know our first and last point. We don't need to find them
-            for (int i = 1; i < waypointsToFind; i++)
+            for (int i = 0; i < waypointsToFind; i++)
             {
                 int min = int.MaxValue;
-                int index = 1;
-
-                for (int j = 0; j < waypointsToFind + 1; j++)
+                int index = 0;
+                for (int j = 1; j < waypointsToFind + 1; j++)
                 {
                     if (i == j || route.Contains(j))
                         continue;
 
-                    if (weights[i, j] < min)
+                    if (weights[previous, j] < min)
                     {
-                        min = (int)weights[i, j];
+                        min = (int)weights[previous, j];
                         index = j;
                     }
                 }
                 route.Add(index);
-                distanse += (int)weights[i, index];
+                distanse += (int)weights[previous, index];
+                previous = index;
             }
             route.Add(destination);
 
