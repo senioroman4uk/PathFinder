@@ -28,7 +28,7 @@ namespace PathFinder.Cars.WebApi.Controllers
             CarBrand brand = await _carsContextQuery.CarBrands.FindBrandByIdAsync(id);
 
             if (brand == null)
-                NotFound();
+                return NotFound();
 
             BrandReadModel model = brand.ToModel();
 

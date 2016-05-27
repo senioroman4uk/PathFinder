@@ -28,7 +28,7 @@ namespace PathFinder.Cars.WebApi.Controllers
             CarColor color = await _carsContextQuery.CarColors.FindColorByIdAsync(id);
 
             if (color == null)
-                NotFound();
+                return NotFound();
 
             ColorReadModel model = color.ToReadModel();
 
