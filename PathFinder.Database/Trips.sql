@@ -8,8 +8,6 @@
 	[IsRegular] BIT NOT NULL,
 	[Price] DECIMAL NOT NULL,
 	[Places] INT NOT NULL,
-	[StartPoint] geography NOT NULL,
-	[EndPoint] geography NOT NULL,
 
 	CONSTRAINT [PkTrips_Id] PRIMARY KEY(Id),
 )
