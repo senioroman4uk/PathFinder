@@ -5,12 +5,14 @@ using Microsoft.Owin.Security.OAuth;
 using PathFinder.Security.DAL.Entities;
 using PathFinder.Security.DAL.Managers;
 
-namespace PathFinder.Infrastructure.Providers
+namespace PathFinder.Security.WebApi.Providers
 {
     public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
+            await Task.Yield();
+
             context.Validated();
         }
 
@@ -33,7 +35,6 @@ namespace PathFinder.Infrastructure.Providers
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
             context.Validated(identity);
-
         }
     }
 }

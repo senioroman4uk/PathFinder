@@ -1,5 +1,4 @@
 ﻿using Owin;
-using PathFinder.Security.DAL.Context;
 using SimpleInjector;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 

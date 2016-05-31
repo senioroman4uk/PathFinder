@@ -1,4 +1,8 @@
-﻿using System;
+﻿// file:	Controllers\AccountController.cs
+//
+// summary:	Implements the account controller class
+
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -12,23 +16,39 @@ using PathFinder.Security.WebApi.Models;
 
 namespace PathFinder.Security.WebApi.Controllers
 {
+    /// <summary>   A controller for handling accounts. </summary>
+    ///
+    /// <remarks>   Vladyslav, 24.05.2016. </remarks>
+
     [RoutePrefix(SecurityRouteConstants.AccountControllerRoutePrefix)]
     public class AccountController : ApiController
     {
+        /// <summary>   The register user command. </summary>
         private readonly IRegisterUserCommand _registerUserCommand;
+        /// <summary>   Manager for user. </summary>
         private readonly AppUserManager _userManager;
 
-        public AccountController(IRegisterUserCommand command, AppUserManager userManager)
+        /// <summary>   Constructor. </summary>
+        ///
+        /// <remarks>   Vladyslav, 24.05.2016. </remarks>
+        ///
+        /// <param name="registerUserCommand">  The register user command. </param>
+        /// <param name="userManager">          Manager for user. </param>
+
+        public AccountController(IRegisterUserCommand registerUserCommand, AppUserManager userManager)
         {
-            _registerUserCommand = command;
+            _registerUserCommand = registerUserCommand;
             _userManager = userManager;
         }
 
-        /// <summary>
-        /// Registers new user into the system
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <summary>   Registers new user into the system. </summary>
+        ///
+        /// <remarks>   Vladyslav, 24.05.2016. </remarks>
+        ///
+        /// <param name="model">    . </param>
+        ///
+        /// <returns>   A Task&lt;IHttpActionResult&gt; </returns>
+
         [AllowAnonymous]
         [HttpPost]
         [Route(SecurityRouteConstants.Register)]
@@ -42,10 +62,14 @@ namespace PathFinder.Security.WebApi.Controllers
             return Created(String.Format(EntityReturnUrls.UserEndPoint, user.Id), user);
         }
 
-        /// <summary>
-        /// Finds user by id
-        /// </summary>
-        /// <param name="id">user identifier</param>
+        /// <summary>   Finds user by id. </summary>
+        ///
+        /// <remarks>   Vladyslav, 24.05.2016. </remarks>
+        ///
+        /// <param name="id">   user identifier. </param>
+        ///
+        /// <returns>   The user. </returns>
+
         [HttpGet]
         [Authorize]
         [Route(SecurityRouteConstants.GetUser)]

@@ -195,6 +195,10 @@
       <Project>{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}</Project>
       <Name>PathFinder.Security.WebApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PathFinder.Trips.WebApi\PathFinder.Trips.WebApi.csproj">
+      <Project>{7e0079dc-036a-48be-ad0c-3122b2012df1}</Project>
+      <Name>PathFinder.Trips.WebApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
