@@ -14,9 +14,10 @@ namespace PathFinder.Trips.WebApi.Patterns.Factory
     class RouteSearchAlgorithmFactory : IRouteSearchAlgorithmFactory
     {
         /// <summary>   The known algorithms. </summary>
-        private static Dictionary<string, IRouteSearchAlgorithm> knownAlgorithms = new Dictionary<string, IRouteSearchAlgorithm>()
+        private static readonly Dictionary<string, IRouteSearchAlgorithm> KnownAlgorithms = new Dictionary<string, IRouteSearchAlgorithm>()
         {
-            { "GridyAlgorithm", new IGreadyRouteSearchAlgorithm() }
+            { "GridyAlgorithm", new IGreadyRouteSearchAlgorithm() },
+            { "BeeAlgorithm", new BeeRouteSearchAlgoritm() }
         };
 
         /// <summary>   Gets route search algorithm. </summary>
@@ -29,7 +30,7 @@ namespace PathFinder.Trips.WebApi.Patterns.Factory
 
         public IRouteSearchAlgorithm GetRouteSearchAlgorithm(string name)
         {
-            return knownAlgorithms[name];
+            return KnownAlgorithms[name];
         }
     }
 }
