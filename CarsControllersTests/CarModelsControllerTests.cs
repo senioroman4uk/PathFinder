@@ -78,6 +78,8 @@ namespace CarsControllersTests
             result.Should().BeOfType<NotFoundResult>();
         }
 
+        [Theory]
+        [MemberData("DataForOkResult")]
         public async void GetModelNotFoundResultByBrandId(IEnumerable<CarModel> models)
         {
             // Arrange
