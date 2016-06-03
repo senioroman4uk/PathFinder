@@ -97,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\ModelStateFilter.cs" />
     <Compile Include="Commands\RegisterUserCommand.cs" />
     <Compile Include="Constants\EntityReturnUrls.cs" />
     <Compile Include="Constants\SecurityRouteConstants.cs" />
