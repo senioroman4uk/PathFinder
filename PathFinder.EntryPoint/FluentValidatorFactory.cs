@@ -1,12 +1,8 @@
-﻿using FluentValidation;
+﻿using System;
+using FluentValidation;
 using SimpleInjector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PathFinder.Security.WebApi.Validation.ValidatorFactory
+namespace PathFinder.EntryPoint
 {
     public class FluentValidatorFactory : ValidatorFactoryBase
     {

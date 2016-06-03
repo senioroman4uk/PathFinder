@@ -110,7 +110,6 @@
     <Compile Include="Providers\SimpleOathProvider.cs" />
     <Compile Include="Validation\IntValidator.cs" />
     <Compile Include="Validation\RegisterUserModelValidator.cs" />
-    <Compile Include="Validation\ValidatorFactory\FluentValidatorFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

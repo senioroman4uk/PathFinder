@@ -11,7 +11,6 @@ using PathFinder.Security.WebApi.Providers;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using FluentValidation.WebApi;
-using PathFinder.Security.WebApi.Validation.ValidatorFactory;
 using PathFinder.Security.WebApi.ActionFilters;
 
 [assembly: OwinStartup(typeof(Startup))]
