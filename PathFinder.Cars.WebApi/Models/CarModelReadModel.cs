@@ -1,6 +1,6 @@
 ﻿namespace PathFinder.Cars.WebApi.Models
 {
-    internal class CarModelReadModel
+    public class CarModelReadModel
     {
         public int Id { get; set; }
 
