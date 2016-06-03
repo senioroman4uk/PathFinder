@@ -97,7 +97,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilters\ModelStateFilter.cs" />
     <Compile Include="Commands\RegisterUserCommand.cs" />
     <Compile Include="Constants\EntityReturnUrls.cs" />
     <Compile Include="Constants\SecurityRouteConstants.cs" />
@@ -108,7 +107,6 @@
     <Compile Include="Package\SecurityPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SimpleOathProvider.cs" />
-    <Compile Include="Validation\IntValidator.cs" />
     <Compile Include="Validation\RegisterUserModelValidator.cs" />
   </ItemGroup>
   <ItemGroup>

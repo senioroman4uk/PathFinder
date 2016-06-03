@@ -1,11 +1,6 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PathFinder.Security.WebApi.Validation
+namespace PathFinder.Infrastructure.Validators
 {
     public class IntValidator : AbstractValidator<int>
     {
