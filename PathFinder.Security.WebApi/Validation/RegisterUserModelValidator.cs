@@ -12,15 +12,18 @@ namespace PathFinder.Security.WebApi.Validation
     {
         public RegisterUserModelValidator()
         {
-            RuleFor(model => model.Email).NotEmpty();
-            RuleFor(model => model).Must(ArePasswordEquels);
+            RuleFor(model => model.Email).NotNull();
+            RuleFor(model => model.Password).NotNull();
+            RuleFor(model => model.RepeatPassword).NotNull();
+            RuleFor(model => model).Must(ArePasswordEquals).WithMessage("Passwords are not equals");
             RuleFor(model => model.LastName).NotEmpty();
-            RuleFor(model => model.UserName).NotEmpty();
+            RuleFor(model => model.UserName).NotNull().NotEmpty();
             RuleFor(model => model.PhoneNumber).NotEmpty();
         }
 
-        private bool ArePasswordEquels(RegisterUserModel arg)
+        private bool ArePasswordEquals(RegisterUserModel arg)
         {
+            if (arg.Password == null) return false;
             return arg.Password.Equals(arg.RepeatPassword);
         }
     }
