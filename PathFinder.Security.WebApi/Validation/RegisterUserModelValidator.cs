@@ -1,10 +1,5 @@
 ﻿using FluentValidation;
 using PathFinder.Security.WebApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PathFinder.Security.WebApi.Validation
 {
@@ -12,13 +7,13 @@ namespace PathFinder.Security.WebApi.Validation
     {
         public RegisterUserModelValidator()
         {
-            RuleFor(model => model.Email).NotNull();
+            RuleFor(model => model.Email).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().EmailAddress();
             RuleFor(model => model.Password).NotNull();
             RuleFor(model => model.RepeatPassword).NotNull();
             RuleFor(model => model).Must(ArePasswordEquals).WithMessage("Passwords are not equals");
-            RuleFor(model => model.LastName).NotEmpty();
-            RuleFor(model => model.UserName).NotNull().NotEmpty();
-            RuleFor(model => model.PhoneNumber).NotEmpty();
+            RuleFor(model => model.LastName).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(model => model.UserName).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(model => model.PhoneNumber).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().Matches(@"\+38\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}");
         }
 
         private bool ArePasswordEquals(RegisterUserModel arg)
