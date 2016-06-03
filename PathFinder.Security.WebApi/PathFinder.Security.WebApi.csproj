@@ -108,6 +108,7 @@
     <Compile Include="Package\SecurityPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SimpleOathProvider.cs" />
+    <Compile Include="Validation\IntValidator.cs" />
     <Compile Include="Validation\RegisterUserModelValidator.cs" />
     <Compile Include="Validation\ValidatorFactory\FluentValidatorFactory.cs" />
   </ItemGroup>
