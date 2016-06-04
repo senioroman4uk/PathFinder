@@ -2,11 +2,9 @@
 using System.Web.Http;
 using System.Web.Http.Results;
 using FluentAssertions;
-using NSubstitute;
 using PathFinder.Cars.DAL.Model;
 using PathFinder.Cars.WebApi.Controllers;
 using PathFinder.Cars.WebApi.Models;
-using PathFinder.Cars.WebApi.Queries;
 using Xunit;
 
 namespace CarsControllersTests
@@ -21,7 +19,7 @@ namespace CarsControllersTests
                 {
                     new []
                     {
-                        new CarModel {Model = "Model1", BrandId=1, Id = 1}
+                        new CarModel {Model = "Model1", BrandId = 1, Id = 1}
                     }
                 };
             }
