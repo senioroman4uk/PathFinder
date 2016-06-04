@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Results;
 using FluentAssertions;
@@ -10,7 +7,6 @@ using PathFinder.Cars.DAL.Model;
 using PathFinder.Cars.WebApi.Controllers;
 using PathFinder.Cars.WebApi.Models;
 using PathFinder.Cars.WebApi.Queries;
-using PathFinder.Tests.Infrastructure;
 using Xunit;
 
 namespace CarsControllersTests
@@ -33,7 +29,7 @@ namespace CarsControllersTests
 
         public static IEnumerable<object[]> DataForGetModelsByBrandId(int id)
         {
-            var models = new CarModel[]
+            var models = new[]
             {
                 new CarModel()
                 {
@@ -49,7 +45,7 @@ namespace CarsControllersTests
                 },
             };
 
-            var brands = new CarBrand[]
+            var brands = new[]
             {
                 new CarBrand()
                 {
@@ -70,11 +66,12 @@ namespace CarsControllersTests
 
         [Theory]
         [MemberData("DataForOkResult")]
-        public async void GetModelOkResultById(IEnumerable<CarModel> models)
+        public async void GetModelOkResultById(ICollection<CarModel> models)
         {
             // Arrange
-            var query = Substitute.For<ICarsContextQuery>();
-            query.CarModels.Returns(new MockForDbSet<CarModel>(models));
+            var builder = new CarContextQueryMockBuilder()
+                .SetCarModels(models);
+            var query = builder.CarsContextQuery;
             var controller = new CarModelsQueryController(query);
 
             // Act
@@ -90,10 +87,9 @@ namespace CarsControllersTests
         public async void GetModelOkResultByBrandId(int id, CarModel[] carModels, CarBrand[] carBrands)
         {
             // Arrange
-            var builder = new CarContextQueryMockBuilder()
+            var query = new CarContextQueryMockBuilder()
                 .SetCarBrands(carBrands)
-                .SetCarModels(carModels);
-            var query = builder.CarsContextQuery;
+                .SetCarModels(carModels).CarsContextQuery;
             var controller = new CarModelsQueryController(query);
 
             // Act
@@ -106,11 +102,11 @@ namespace CarsControllersTests
 
         [Theory]
         [MemberData("DataForOkResult")]
-        public async void GetModelNotFoundResultById(IEnumerable<CarModel> models)
+        public async void GetModelNotFoundResultById(ICollection<CarModel> models)
         {
             // Arrange
-            var query = Substitute.For<ICarsContextQuery>();
-            query.CarModels.Returns(new MockForDbSet<CarModel>(models));
+            var query = new CarContextQueryMockBuilder()
+               .SetCarModels(models).CarsContextQuery;
             var controller = new CarModelsQueryController(query);
 
             // Act

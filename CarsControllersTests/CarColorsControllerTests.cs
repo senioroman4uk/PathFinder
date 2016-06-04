@@ -7,7 +7,6 @@ using PathFinder.Cars.DAL.Model;
 using PathFinder.Cars.WebApi.Controllers;
 using PathFinder.Cars.WebApi.Models;
 using PathFinder.Cars.WebApi.Queries;
-using PathFinder.Tests.Infrastructure;
 using Xunit;
 
 namespace CarsControllersTests
@@ -30,11 +29,10 @@ namespace CarsControllersTests
 
         [Theory]
         [MemberData("DataForOkResult")]
-        public async void GetColorOkResult(IEnumerable<CarColor> colors)
+        public async void GetColorOkResult(ICollection<CarColor> colors)
         {
             // Arrange
-            var query = Substitute.For<ICarsContextQuery>();
-            query.CarColors.Returns(new MockForDbSet<CarColor>(colors));
+            var query = new CarContextQueryMockBuilder().SetCarColors(colors).CarsContextQuery;
             var controller = new CarColorsQueryController(query);
 
             // Act
@@ -47,11 +45,10 @@ namespace CarsControllersTests
 
         [Theory]
         [MemberData("DataForOkResult")]
-        public async void GetColorNotFoundResult(IEnumerable<CarColor> colors)
+        public async void GetColorNotFoundResult(ICollection<CarColor> colors)
         {
             // Arrange
-            var query = Substitute.For<ICarsContextQuery>();
-            query.CarColors.Returns(new MockForDbSet<CarColor>(colors));
+            var query = new CarContextQueryMockBuilder().SetCarColors(colors).CarsContextQuery;
             var controller = new CarColorsQueryController(query);
 
             // Act
