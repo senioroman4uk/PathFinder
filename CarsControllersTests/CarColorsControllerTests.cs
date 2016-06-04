@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using FluentAssertions;
@@ -29,7 +30,7 @@ namespace CarsControllersTests
 
         [Theory]
         [MemberData("DataForOkResult")]
-        public async void GetColorOkResult(ICollection<CarColor> colors)
+        public async Task GetColorOkResult(ICollection<CarColor> colors)
         {
             // Arrange
             var query = new CarContextQueryMockBuilder().SetCarColors(colors).CarsContextQuery;
@@ -45,7 +46,7 @@ namespace CarsControllersTests
 
         [Theory]
         [MemberData("DataForOkResult")]
-        public async void GetColorNotFoundResult(ICollection<CarColor> colors)
+        public async Task GetColorNotFoundResult(ICollection<CarColor> colors)
         {
             // Arrange
             var query = new CarContextQueryMockBuilder().SetCarColors(colors).CarsContextQuery;
