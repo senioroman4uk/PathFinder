@@ -5,7 +5,7 @@ using System.Web.Http.Filters;
 
 namespace PathFinder.Infrastructure.ActionFilters
 {
-    public class ModelStateFilter : ActionFilterAttribute
+    public class ModelStateFilterAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(HttpActionContext context)
         {

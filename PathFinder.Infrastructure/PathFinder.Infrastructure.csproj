@@ -109,7 +109,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilters\ModelStateFilter.cs" />
+    <Compile Include="ActionFilters\ModelStateFilterAttribute.cs" />
     <Compile Include="Constants\CommonRouteConstants.cs" />
     <Compile Include="Extensions\UseOwinContextInjectorExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
