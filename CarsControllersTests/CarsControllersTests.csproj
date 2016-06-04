@@ -119,10 +119,6 @@
       <Project>{F979614E-8163-4371-9DA5-4FDCA6E36B62}</Project>
       <Name>PathFinder.Cars.WebApi</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PathFinder.Tests.Infrastructure\PathFinder.Tests.Infrastructure.csproj">
-      <Project>{63248750-5E2A-4A66-8A0A-2150A1A88347}</Project>
-      <Name>PathFinder.Tests.Infrastructure</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
