@@ -10,6 +10,8 @@ using PathFinder.Security.DAL.Managers;
 using PathFinder.Security.WebApi.Providers;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
+using FluentValidation.WebApi;
+using PathFinder.Infrastructure.ActionFilters;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace PathFinder.EntryPoint
@@ -25,10 +27,12 @@ namespace PathFinder.EntryPoint
             app.UseSimpleInjectorContext(container);
             app.CreatePerOwinContext(container.GetInstance<SecurityContext>);
             app.CreatePerOwinContext(container.GetInstance<AppUserManager>);
-
             ConfigureOAuth(app);
-            HttpConfiguration configuration = ConfigureWebApi(container);
 
+            HttpConfiguration configuration = ConfigureWebApi(container);
+            configuration.Filters.Add(new ModelStateFilter());
+            FluentValidationModelValidatorProvider.Configure(configuration,
+                provider => provider.ValidatorFactory = new FluentValidatorFactory(container));
             app.UseWebApi(configuration);
         }
 

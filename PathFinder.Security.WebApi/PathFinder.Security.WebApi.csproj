@@ -35,6 +35,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -96,6 +100,7 @@
     <Compile Include="Commands\RegisterUserCommand.cs" />
     <Compile Include="Constants\EntityReturnUrls.cs" />
     <Compile Include="Constants\SecurityRouteConstants.cs" />
+    <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
@@ -103,6 +108,7 @@
     <Compile Include="Package\SecurityPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SimpleOathProvider.cs" />
+    <Compile Include="Validation\RegisterUserModelValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
