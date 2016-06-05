@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using FluentAssertions;
@@ -64,7 +65,7 @@ namespace CarsControllersTests
 
         [Theory]
         [MemberData("DataForOkResult")]
-        public async void GetModelOkResultById(ICollection<CarModel> models)
+        public async Task GetModelOkResultById(ICollection<CarModel> models)
         {
             // Arrange
             var builder = new CarContextQueryMockBuilder()
@@ -82,7 +83,7 @@ namespace CarsControllersTests
 
         [Theory]
         [MemberData("DataForGetModelsByBrandId", 1)]
-        public async void GetModelOkResultByBrandId(int id, CarModel[] carModels, CarBrand[] carBrands)
+        public async Task GetModelOkResultByBrandId(int id, CarModel[] carModels, CarBrand[] carBrands)
         {
             // Arrange
             var query = new CarContextQueryMockBuilder()
@@ -100,7 +101,7 @@ namespace CarsControllersTests
 
         [Theory]
         [MemberData("DataForOkResult")]
-        public async void GetModelNotFoundResultById(ICollection<CarModel> models)
+        public async Task GetModelNotFoundResultById(ICollection<CarModel> models)
         {
             // Arrange
             var query = new CarContextQueryMockBuilder()
@@ -115,10 +116,10 @@ namespace CarsControllersTests
         }
 
         [Fact]
-        public async void GetModelNotFoundResultByBrandId()
+        public async Task GetModelNotFoundResultByBrandId()
         {
             // Arrange
-            var builder = new CarContextQueryMockBuilder();
+            var builder = new CarContextQueryMockBuilder(); 
             var query = builder.CarsContextQuery;
         
             var controller = new CarModelsQueryController(query);

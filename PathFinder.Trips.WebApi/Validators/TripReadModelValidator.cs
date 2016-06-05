@@ -4,7 +4,7 @@ using System;
 
 namespace PathFinder.Trips.WebApi.Validators
 {
-    public class TripReadModelValidator:AbstractValidator<TripReadModel>
+    public class TripReadModelValidator : AbstractValidator<TripReadModel>
     {
         public TripReadModelValidator()
         {

@@ -14,7 +14,7 @@ namespace PathFinder.Cars.WebApi.Controllers
     [RoutePrefix(CarsRouteConstants.CarsControllerPrefix)]
     public class CarsQueryController : ApiController
     {
-        private ICarsContextQuery _carsContextQuery;
+        private readonly ICarsContextQuery _carsContextQuery;
 
         public CarsQueryController(ICarsContextQuery carsContextQuery)
         {

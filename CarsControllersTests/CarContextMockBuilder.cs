@@ -41,13 +41,13 @@ namespace CarsControllersTests
         } 
         public CarContextQueryMockBuilder SetCars(ICollection<Car> cars)
         {
-            _cars.SetupData(cars);
+            _cars = _cars.SetupData(cars);
             return this;
         }
 
         public CarContextQueryMockBuilder SetUsers(ICollection<User> users)
         {
-            _users.SetupData(users);
+            _users = _users.SetupData(users);
             return this;
         }
 
@@ -65,7 +65,7 @@ namespace CarsControllersTests
 
         public CarContextQueryMockBuilder SetCarModels(ICollection<CarModel> carModels)
         {
-            _models.SetupData(carModels);
+            _models = _models.SetupData(carModels);
             return this;
         }
     }

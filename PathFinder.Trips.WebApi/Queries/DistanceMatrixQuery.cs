@@ -24,7 +24,7 @@ namespace PathFinder.Trips.WebApi.Queries
         private const string DistanseMatrixUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?origins={0}&destinations={1}&key={2}";
 
         /// <summary>   The HTTP client. </summary>
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
         /// <summary>   Constructor. </summary>
         ///
