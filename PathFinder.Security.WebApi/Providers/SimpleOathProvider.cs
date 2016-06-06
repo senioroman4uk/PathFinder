@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.OAuth;
 using PathFinder.Security.DAL.Entities;
@@ -9,11 +8,12 @@ namespace PathFinder.Security.WebApi.Providers
 {
     public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
-        public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
+        public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            await Task.Yield();
-
+            // dont check clientId for now
             context.Validated();
+
+            return Task.FromResult<object>(null);
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
@@ -32,7 +32,7 @@ namespace PathFinder.Security.WebApi.Providers
                 return;
             }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            var identity = await manager.CreateIdentityAsync(user, context.Options.AuthenticationType);
 
             context.Validated(identity);
         }
