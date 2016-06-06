@@ -97,6 +97,7 @@
     <Compile Include="Patterns\Factory\IRouteSearchAlgorithmFactory.cs" />
     <Compile Include="Patterns\Factory\RouteSearchAlgorithmFactory.cs" />
     <Compile Include="Patterns\Strategy\BeeRouteSearchAlgorithm.cs" />
+    <Compile Include="Patterns\Strategy\BranchAndBoundRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\GreadyRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\IRouteSearchAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
