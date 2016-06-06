@@ -3,9 +3,9 @@
 // summary:	Implements the user mapper class
 
 using PathFinder.Security.Authentication.Models;
-using PathFinder.Security.WebApi.Models;
+using PathFinder.Security.UserManagement.Models;
 
-namespace PathFinder.Security.WebApi.Mappers
+namespace PathFinder.Security.UserManagement.Mappers
 {
     /// <summary>   A user mapper. </summary>
     ///

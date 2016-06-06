@@ -1,6 +1,6 @@
 ﻿using PathFinder.Infrastructure.Constants;
 
-namespace PathFinder.Security.WebApi.Constants
+namespace PathFinder.Security.UserManagement.Constants
 {
     public static class SecurityRouteConstants
     {

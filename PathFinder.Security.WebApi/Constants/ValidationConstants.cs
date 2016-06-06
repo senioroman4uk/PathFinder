@@ -1,4 +1,4 @@
-﻿namespace PathFinder.Security.WebApi.Constants
+﻿namespace PathFinder.Security.UserManagement.Constants
 {
     public static class ValidationConstants
     {
