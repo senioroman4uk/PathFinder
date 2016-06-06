@@ -2,7 +2,7 @@
 //
 // summary:	Implements the user mapper class
 
-using PathFinder.Security.DAL.Entities;
+using PathFinder.Security.Authentication.Models;
 using PathFinder.Security.WebApi.Models;
 
 namespace PathFinder.Security.WebApi.Mappers

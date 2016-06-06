@@ -1,8 +1,6 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity;
-using PathFinder.Security.DAL.Context;
-using PathFinder.Security.DAL.Entities;
-using PathFinder.Security.DAL.Managers;
+using PathFinder.Security.Authentication.Models;
 using PathFinder.Security.WebApi.Commands;
 using SimpleInjector;
 using SimpleInjector.Packaging;

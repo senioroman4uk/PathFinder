@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.OAuth;
-using PathFinder.Security.DAL.Entities;
-using PathFinder.Security.DAL.Managers;
+using PathFinder.Security.Authentication.Models;
 
-namespace PathFinder.Security.WebApi.Providers
+namespace PathFinder.Security.Authentication.Providers
 {
     public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {

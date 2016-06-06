@@ -7,8 +7,8 @@
     <ProjectGuid>{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PathFinder.Security.WebApi</RootNamespace>
-    <AssemblyName>PathFinder.Security.WebApi</AssemblyName>
+    <RootNamespace>PathFinder.Security.UserManagement</RootNamespace>
+    <AssemblyName>PathFinder.Security.UserManagement</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -107,7 +107,6 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Package\SecurityPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\SimpleOathProvider.cs" />
     <Compile Include="Validation\RegisterUserModelValidator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,9 +119,9 @@
       <Project>{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}</Project>
       <Name>PathFinder.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PathFinder.Security.DAL\PathFinder.Security.DAL.csproj">
-      <Project>{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}</Project>
-      <Name>PathFinder.Security.DAL</Name>
+    <ProjectReference Include="..\PathFinder.Security.Authentication\PathFinder.Security.Authentication.csproj">
+      <Project>{79e32179-888f-42de-b0ca-d03330905e97}</Project>
+      <Name>PathFinder.Security.Authentication</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

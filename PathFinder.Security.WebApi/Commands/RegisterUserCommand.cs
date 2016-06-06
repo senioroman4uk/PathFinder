@@ -4,8 +4,7 @@
 
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using PathFinder.Security.DAL.Entities;
-using PathFinder.Security.DAL.Managers;
+using PathFinder.Security.Authentication.Models;
 using PathFinder.Security.WebApi.Mappers;
 using PathFinder.Security.WebApi.Models;
 
