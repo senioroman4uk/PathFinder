@@ -30,6 +30,7 @@ namespace PathFinder.EntryPoint
             ConfigureOAuth(app);
 
             HttpConfiguration configuration = ConfigureWebApi(container);
+            configuration.Filters.Add(new AuthorizeAttribute());
             configuration.Filters.Add(new ModelStateFilterAttribute());
             FluentValidationModelValidatorProvider.Configure(configuration,
                 provider => provider.ValidatorFactory = new FluentValidatorFactory(container));

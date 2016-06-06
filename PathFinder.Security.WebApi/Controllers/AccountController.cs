@@ -71,7 +71,6 @@ namespace PathFinder.Security.WebApi.Controllers
         /// <returns>   The user. </returns>
 
         [HttpGet]
-        [Authorize]
         [Route(SecurityRouteConstants.GetUser)]
         public async Task<IHttpActionResult> GetUser(int id)
         {
