@@ -64,7 +64,7 @@
   <ItemGroup>
     <Build Include="SystemComments.sql" />
     <Build Include="UserComments.sql" />
-    <Build Include="AspNetUsers.sql" />
+    <Build Include="Users.sql" />
     <Build Include="Trips.sql" />
     <Build Include="PlacesOfInterest.sql" />
     <Build Include="IntermediatePoints.sql" />
@@ -72,6 +72,10 @@
     <Build Include="CarModels.sql" />
     <Build Include="CarColors.sql" />
     <Build Include="Cars.sql" />
+    <Build Include="Roles.sql" />
+    <Build Include="UserClaims.sql" />
+    <Build Include="UserLogins.sql" />
+    <Build Include="UserRoles.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="PathFinder.Database.refactorlog" />
