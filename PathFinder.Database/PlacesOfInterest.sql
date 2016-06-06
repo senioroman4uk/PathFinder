@@ -7,5 +7,5 @@
     [CreatedAt] DATETIME NOT NULL,
 
 	CONSTRAINT [PkPlacesOfInterest_Id] PRIMARY KEY(Id),
-	CONSTRAINT [FkPlacesOfInterest_AuthorId] FOREIGN KEY([AuthorId]) REFERENCES [dbo].[AspNetUsers](Id),
+	CONSTRAINT [FkPlacesOfInterest_AuthorId] FOREIGN KEY([AuthorId]) REFERENCES [dbo].[Users](Id),
 )

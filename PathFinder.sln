@@ -9,9 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Infrastructure",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{EFCDC958-6337-4582-A604-2143D6400F5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Security.DAL", "PathFinder.Security.DAL\PathFinder.Security.DAL.csproj", "{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Security.WebApi", "PathFinder.Security.WebApi\PathFinder.Security.WebApi.csproj", "{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Security.UserManagement", "PathFinder.Security.WebApi\PathFinder.Security.UserManagement.csproj", "{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PathFinder.Database", "PathFinder.Database\PathFinder.Database.sqlproj", "{5C9BE859-07C3-4A74-952E-631E2AA6AE56}"
 EndProject
@@ -33,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cars", "Cars", "{40F98385-A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarsControllersTests", "CarsControllersTests\CarsControllersTests.csproj", "{62F675BA-6F70-4EF0-BDB2-CFBFD595775E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFinder.Security.Authentication", "PathFinder.Security.Authentication\PathFinder.Security.Authentication.csproj", "{79E32179-888F-42DE-B0CA-D03330905E97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +47,6 @@ Global
 		{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42D3429E-49E1-4F1A-8DDB-CCEF658CD333}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,12 +77,15 @@ Global
 		{62F675BA-6F70-4EF0-BDB2-CFBFD595775E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62F675BA-6F70-4EF0-BDB2-CFBFD595775E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62F675BA-6F70-4EF0-BDB2-CFBFD595775E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79E32179-888F-42DE-B0CA-D03330905E97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79E32179-888F-42DE-B0CA-D03330905E97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79E32179-888F-42DE-B0CA-D03330905E97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79E32179-888F-42DE-B0CA-D03330905E97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C4AF98BC-3791-496B-AA9C-8DA9D55937E3} = {EFCDC958-6337-4582-A604-2143D6400F5C}
 		{42D3429E-49E1-4F1A-8DDB-CCEF658CD333} = {EFCDC958-6337-4582-A604-2143D6400F5C}
 		{CAC110FD-F6D2-424C-AAE9-D5F9094929AA} = {669AF69D-78FA-45B1-82F6-DCB87D3AD486}
 		{F979614E-8163-4371-9DA5-4FDCA6E36B62} = {669AF69D-78FA-45B1-82F6-DCB87D3AD486}
@@ -94,5 +93,6 @@ Global
 		{7E0079DC-036A-48BE-AD0C-3122B2012DF1} = {3CB61A76-981D-44E1-AEEA-50E89DF1DF60}
 		{40F98385-AB7B-4ABD-B318-4564A9E8A991} = {5A533587-81CC-41C1-AAF2-10562DAE2DFE}
 		{62F675BA-6F70-4EF0-BDB2-CFBFD595775E} = {40F98385-AB7B-4ABD-B318-4564A9E8A991}
+		{79E32179-888F-42DE-B0CA-D03330905E97} = {EFCDC958-6337-4582-A604-2143D6400F5C}
 	EndGlobalSection
 EndGlobal

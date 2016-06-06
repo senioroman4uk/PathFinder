@@ -5,13 +5,12 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using PathFinder.EntryPoint;
 using PathFinder.Infrastructure.Extensions;
-using PathFinder.Security.DAL.Context;
-using PathFinder.Security.DAL.Managers;
-using PathFinder.Security.WebApi.Providers;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using FluentValidation.WebApi;
 using PathFinder.Infrastructure.ActionFilters;
+using PathFinder.Security.Authentication.Models;
+using PathFinder.Security.Authentication.Providers;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace PathFinder.EntryPoint

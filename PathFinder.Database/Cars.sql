@@ -8,7 +8,7 @@
 	[Capacity] INT NOT NULL,
 
 	CONSTRAINT [PkCars_Id] PRIMARY KEY(Id),
-	CONSTRAINT [FkCars_OwnerId] FOREIGN KEY([OwnerId]) REFERENCES [dbo].[AspNetUsers](Id),
+	CONSTRAINT [FkCars_OwnerId] FOREIGN KEY([OwnerId]) REFERENCES [dbo].[Users](Id),
 	CONSTRAINT [FkCars_ModelId] FOREIGN KEY([ModelId]) REFERENCES [dbo].[CarModels](Id),
 	CONSTRAINT [FkCars_ColorId] FOREIGN KEY([ColorId]) REFERENCES [dbo].[CarColors](Id)
 )

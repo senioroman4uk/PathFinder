@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[AspNetUsers]
+﻿CREATE TABLE [dbo].[Users]
 (
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nvarchar](max) NULL,
@@ -17,5 +17,5 @@
 	[AccessFailedCount] [int] NOT NULL,
 	[UserName] [nvarchar](256) NOT NULL,
 
-	CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY(Id) 
+	CONSTRAINT [PK_dbo.Users] PRIMARY KEY(Id) 
 )

@@ -4,12 +4,11 @@
 
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using PathFinder.Security.DAL.Entities;
-using PathFinder.Security.DAL.Managers;
-using PathFinder.Security.WebApi.Mappers;
-using PathFinder.Security.WebApi.Models;
+using PathFinder.Security.Authentication.Models;
+using PathFinder.Security.UserManagement.Mappers;
+using PathFinder.Security.UserManagement.Models;
 
-namespace PathFinder.Security.WebApi.Commands
+namespace PathFinder.Security.UserManagement.Commands
 {
     /// <summary>   Interface for register user command. </summary>
     ///

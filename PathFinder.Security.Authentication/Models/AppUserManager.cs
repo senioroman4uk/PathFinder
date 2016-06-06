@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
-using PathFinder.Security.DAL.Entities;
 
-namespace PathFinder.Security.DAL.Managers
+namespace PathFinder.Security.Authentication.Models
 {
     public class AppUserManager : UserManager<AppUser, int>
     {

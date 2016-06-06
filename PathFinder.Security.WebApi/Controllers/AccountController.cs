@@ -7,14 +7,13 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
-using PathFinder.Security.DAL.Entities;
-using PathFinder.Security.DAL.Managers;
-using PathFinder.Security.WebApi.Commands;
-using PathFinder.Security.WebApi.Constants;
-using PathFinder.Security.WebApi.Mappers;
-using PathFinder.Security.WebApi.Models;
+using PathFinder.Security.Authentication.Models;
+using PathFinder.Security.UserManagement.Commands;
+using PathFinder.Security.UserManagement.Constants;
+using PathFinder.Security.UserManagement.Mappers;
+using PathFinder.Security.UserManagement.Models;
 
-namespace PathFinder.Security.WebApi.Controllers
+namespace PathFinder.Security.UserManagement.Controllers
 {
     /// <summary>   A controller for handling accounts. </summary>
     ///

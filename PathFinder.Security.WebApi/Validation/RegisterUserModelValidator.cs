@@ -1,8 +1,8 @@
 ﻿using FluentValidation;
-using PathFinder.Security.WebApi.Constants;
-using PathFinder.Security.WebApi.Models;
+using PathFinder.Security.UserManagement.Constants;
+using PathFinder.Security.UserManagement.Models;
 
-namespace PathFinder.Security.WebApi.Validation
+namespace PathFinder.Security.UserManagement.Validation
 {
     public class RegisterUserModelValidator : AbstractValidator<RegisterUserModel>
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace PathFinder.Security.DAL.Entities
+namespace PathFinder.Security.Authentication.Models
 {
     public class AppUser : IdentityUser<int, AppUserLogin, AppUserRole, AppUserClaim>
     {
