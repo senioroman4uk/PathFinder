@@ -6,9 +6,9 @@ namespace FeedBack.WepApi.Extensions
 {
     public static class IOrderedQueryableExtension
     {
-        public static User GetUserById(this IOrderedQueryable<User> collection, string id)
+        public static User GetUserById(this IOrderedQueryable<User> collection, int id)
         {
-            return collection.FirstOrDefault(x => x.Id == UInt32.Parse(id));          
+            return collection.FirstOrDefault(x => x.Id == id);          
         }
     }
 }

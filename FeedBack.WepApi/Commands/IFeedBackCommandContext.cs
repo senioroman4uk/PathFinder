@@ -1,10 +1,9 @@
 ﻿using PathFinder.FeedBack.DAL.Model;
 
-namespace FeedBack.WepApi.Query
+namespace FeedBack.WepApi.Commands
 {
     public interface IFeedBackCommandContext
     {
-        Comment CreateComment(User user, string commentMessage);
-        bool SaveComment(Comment comment);
+        void AddComment(Comment comment);
     }
 }

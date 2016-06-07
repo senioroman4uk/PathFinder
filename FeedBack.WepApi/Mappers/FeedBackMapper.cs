@@ -6,7 +6,7 @@ namespace FeedBack.WepApi.Mappers
 {
     public static class FeedBackMapper
     {
-        public static Comment CommentMapper(this CommentModel model)
+        public static Comment ToFeedBack(this FeedBackModel model)
         {
             return new Comment
             {
@@ -14,6 +14,17 @@ namespace FeedBack.WepApi.Mappers
                 Author = model.Author,
                 Email = model.Email,
                 CreatedAt = DateTime.Now
+            };
+        }
+
+        public static FeedBackResponseModel ToFeedBackResponseModel(this Comment comment)
+        {
+            return new FeedBackResponseModel()
+            {
+                Author = comment.Author,
+                Email = comment.Email,
+                Id = comment.Id,
+                Message = comment.Message
             };
         }
     }

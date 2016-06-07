@@ -1,6 +1,4 @@
-﻿using System;
-using FeedBack.WepApi.Query;
-using PathFinder.FeedBack.DAL.Model;
+﻿using PathFinder.FeedBack.DAL.Model;
 
 namespace FeedBack.WepApi.Commands
 {
@@ -13,23 +11,10 @@ namespace FeedBack.WepApi.Commands
             _context = context;
         }
 
-        public Comment CreateComment(User user, string commentMessage)
-        {
-            return new Comment
-            {
-                Message = commentMessage,
-                Author = user.FirstName + " " + user.LastName,
-                CreatedAt = DateTime.Now,
-                Email = user.Email
-            };
-        }
-
-        public bool SaveComment(Comment comment)
+        public void AddComment(Comment comment)
         {
             _context.Comments.Add(comment);
-            if (_context.SaveChanges() > 0)
-                return true;
-            return false;
+            _context.SaveChanges();
         }
     }
 }

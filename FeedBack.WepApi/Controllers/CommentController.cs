@@ -8,16 +8,17 @@ using FeedBack.WepApi.Query;
 using Microsoft.AspNet.Identity;
 using PathFinder.FeedBack.DAL.Model;
 using PathFinder.Infrastructure.Constants;
+using PathFinder.Infrastructure.HttpActionResults;
 
 namespace FeedBack.WepApi.Controllers
 {
     [RoutePrefix(CommonRouteConstants.RouteBase)]
     public class CommentController : ApiController
     {
-        private readonly FeedBackContextQuery _query;
-        private readonly FeedBackCommandContext _command;
+        private readonly IFeedBackContextQuery _query;
+        private readonly IFeedBackCommandContext _command;
 
-        public CommentController(FeedBackContextQuery query, FeedBackCommandContext command)
+        public CommentController(IFeedBackContextQuery query, IFeedBackCommandContext command)
         {
             _query = query;
             _command = command;
@@ -27,27 +28,30 @@ namespace FeedBack.WepApi.Controllers
         [Route(FeedBackRouteConstants.CreateComment)]
         public IHttpActionResult CreateComment(string comment)
         {
-            string id = User.Identity.GetUserId();
-            User user = _query.Users.GetUserById(id);
+            if (User.Identity == null)
+                return Unauthorized();
+
+            int userId = User.Identity.GetUserId<int>();
+            User user = _query.Users.GetUserById(userId);
             if (user == null)
                 return NotFound();
 
-            Comment feedBack = _command.CreateComment(user, comment);
-            if(_command.SaveComment(feedBack))
-                return Ok();
-            return BadRequest();
+            Comment feedBack = user.CreateFeedBack(comment);
+            _command.AddComment(feedBack);
+            var model = feedBack.ToFeedBackResponseModel();
 
+            return PostResults.Created(this, model);
         }
 
         [AllowAnonymous]
         [HttpPost]
         [Route(FeedBackRouteConstants.CreateUnAuthComment)]
-        public IHttpActionResult CreateComment(CommentModel feedBackModel)
+        public IHttpActionResult CreateComment(FeedBackModel feedBackModel)
         {
-            Comment comment = feedBackModel.CommentMapper();
-            if(_command.SaveComment(comment))
-                return Ok();
-            return BadRequest();
+            Comment feedBack = feedBackModel.ToFeedBack();
+            _command.AddComment(feedBack);
+            var model = feedBack.ToFeedBackResponseModel();
+            return PostResults.Created(this, model);
         }
     }
 }

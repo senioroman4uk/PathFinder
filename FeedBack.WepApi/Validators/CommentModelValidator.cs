@@ -1,9 +1,9 @@
 ﻿using FeedBack.WepApi.Models;
 using FluentValidation;
 
-namespace FeedBack.WepApi.Validation
+namespace FeedBack.WepApi.Validators
 {
-    public class CommentModelValidator : AbstractValidator<CommentModel>
+    public class CommentModelValidator : AbstractValidator<FeedBackModel>
     {
         public CommentModelValidator()
         {

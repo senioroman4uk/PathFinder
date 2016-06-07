@@ -81,8 +81,10 @@
     <Compile Include="Constants\FeedBackRouteConstants.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Extensions\IOrderedQueryableExtension.cs" />
+    <Compile Include="Extensions\UserExtensions.cs" />
     <Compile Include="Mappers\FeedBackMapper.cs" />
-    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\FeedBackModel.cs" />
+    <Compile Include="Models\FeedBackResponseModel.cs" />
     <Compile Include="Packages\FeedBackPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\FeedBackCommandContext.cs" />
@@ -102,7 +104,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
