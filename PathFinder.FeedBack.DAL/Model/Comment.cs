@@ -9,9 +9,6 @@
 
 namespace PathFinder.FeedBack.DAL.Model
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class Comment
     {
         public int Id { get; set; }

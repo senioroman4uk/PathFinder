@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using FeedBack.WepApi.Packages;
+using FluentValidation;
 using PathFinder.Cars.WebApi.Package;
 using PathFinder.Trips.WebApi.Package;
 using SimpleInjector;
@@ -25,7 +26,8 @@ namespace PathFinder.EntryPoint
             {
                 typeof(SecurityPackage).Assembly,
                 typeof(CarsPackage).Assembly,
-                typeof(TripsPackage).Assembly
+                typeof(TripsPackage).Assembly,
+                typeof(FeedBackPackage).Assembly
             });
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
             container.Register(typeof(IValidator<>), assemblies, Lifestyle.Singleton);

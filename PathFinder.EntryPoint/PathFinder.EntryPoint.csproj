@@ -188,6 +188,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FeedBack.WepApi\PathFinder.FeedBack.WepApi.csproj">
+      <Project>{0dd26009-84ec-4787-b5c8-80e6e7d62ca2}</Project>
+      <Name>PathFinder.FeedBack.WepApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PathFinder.Cars.WebApi\PathFinder.Cars.WebApi.csproj">
       <Project>{f979614e-8163-4371-9da5-4fdca6e36b62}</Project>
       <Name>PathFinder.Cars.WebApi</Name>
