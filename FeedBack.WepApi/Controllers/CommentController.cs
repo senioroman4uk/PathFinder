@@ -1,14 +1,15 @@
-﻿using FeedBack.WepApi.Models;
-using FeedBack.WepApi.Query;
-using System.Web.Http;
-using Microsoft.AspNet.Identity;
-using PathFinder.FeedBack.DAL.Model;
+﻿using System.Web.Http;
+using FeedBack.WepApi.Commands;
+using FeedBack.WepApi.Constants;
 using FeedBack.WepApi.Extensions;
 using FeedBack.WepApi.Mappers;
+using FeedBack.WepApi.Models;
+using FeedBack.WepApi.Query;
+using Microsoft.AspNet.Identity;
+using PathFinder.FeedBack.DAL.Model;
 using PathFinder.Infrastructure.Constants;
-using FeedBack.WepApi.Constants;
 
-namespace PathFinder.FeedBack.DAL.Controllers
+namespace FeedBack.WepApi.Controllers
 {
     [RoutePrefix(CommonRouteConstants.RouteBase)]
     public class CommentController : ApiController
@@ -22,7 +23,6 @@ namespace PathFinder.FeedBack.DAL.Controllers
             _command = command;
         }
 
-        [Authorize]
         [HttpPost]
         [Route(FeedBackRouteConstants.CreateComment)]
         public IHttpActionResult CreateComment(string comment)
@@ -31,6 +31,7 @@ namespace PathFinder.FeedBack.DAL.Controllers
             User user = _query.Users.GetUserById(id);
             if (user == null)
                 return NotFound();
+
             Comment feedBack = _command.CreateComment(user, comment);
             if(_command.SaveComment(feedBack))
                 return Ok();

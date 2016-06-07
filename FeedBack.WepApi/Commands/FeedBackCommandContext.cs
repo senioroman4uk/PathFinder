@@ -1,19 +1,16 @@
-﻿using PathFinder.FeedBack.DAL.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using FeedBack.WepApi.Query;
+using PathFinder.FeedBack.DAL.Model;
 
-namespace FeedBack.WepApi.Query
+namespace FeedBack.WepApi.Commands
 {
     public class FeedBackCommandContext : IFeedBackCommandContext
     {
         private readonly FeedBackContext _context;
 
-        public FeedBackCommandContext(FeedBackContext contetx)
+        public FeedBackCommandContext(FeedBackContext context)
         {
-            _context = contetx;
+            _context = context;
         }
 
         public Comment CreateComment(User user, string commentMessage)

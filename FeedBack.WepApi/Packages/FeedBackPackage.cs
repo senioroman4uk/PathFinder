@@ -1,4 +1,5 @@
-﻿using SimpleInjector;
+﻿using FeedBack.WepApi.Commands;
+using SimpleInjector;
 using SimpleInjector.Packaging;
 using FeedBack.WepApi.Query;
 using PathFinder.FeedBack.DAL.Model;
