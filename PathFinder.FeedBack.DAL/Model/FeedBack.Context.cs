@@ -16,7 +16,7 @@ namespace PathFinder.FeedBack.DAL.Model
     public partial class FeedBackContext : DbContext
     {
         public FeedBackContext()
-            : base("name=Entities")
+            : base("name=FeedBackContext")
         {
         }
     

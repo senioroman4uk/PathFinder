@@ -1,6 +1,7 @@
 ﻿using SimpleInjector;
 using SimpleInjector.Packaging;
 using FeedBack.WepApi.Query;
+using PathFinder.FeedBack.DAL.Model;
 
 namespace FeedBack.WepApi.Packages
 {
@@ -8,6 +9,7 @@ namespace FeedBack.WepApi.Packages
     {
         public void RegisterServices(Container container)
         {
+            container.Register<FeedBackContext>(Lifestyle.Scoped);
             container.Register<IFeedBackContextQuery, FeedBackContextQuery>(Lifestyle.Scoped);
         }
     }

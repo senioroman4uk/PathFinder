@@ -19,6 +19,7 @@ namespace PathFinder.FeedBack.DAL.Controllers
         }
 
         [Authorize]
+        [HttpPost]
         [Route("gfd")]
         public IHttpActionResult CreateComment(string comment)
         {
@@ -34,6 +35,7 @@ namespace PathFinder.FeedBack.DAL.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost]
         [Route("gfdsa")]
         public IHttpActionResult CreateComment(CommentModel feedBackModel)
         {
