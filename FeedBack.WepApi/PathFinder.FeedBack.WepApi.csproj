@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\FeedBackRouteConstants.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Extensions\IOrderedQueryableExtension.cs" />
     <Compile Include="Mappers\FeedBackMapper.cs" />
@@ -81,6 +82,10 @@
     <ProjectReference Include="..\PathFinder.FeedBack.DAL\PathFinder.FeedBack.DAL.csproj">
       <Project>{91D0285C-2EB9-4182-805A-41EC5D49A42A}</Project>
       <Name>PathFinder.FeedBack.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PathFinder.Infrastructure\PathFinder.Infrastructure.csproj">
+      <Project>{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}</Project>
+      <Name>PathFinder.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -4,11 +4,13 @@ using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using PathFinder.FeedBack.DAL.Model;
 using FeedBack.WepApi.Extensions;
-using System.Threading.Tasks;
 using FeedBack.WepApi.Mappers;
+using PathFinder.Infrastructure.Constants;
+using FeedBack.WepApi.Constants;
 
 namespace PathFinder.FeedBack.DAL.Controllers
 {
+    [RoutePrefix(CommonRouteConstants.RouteBase)]
     public class CommentController : ApiController
     {
         private readonly FeedBackContextQuery _query;
@@ -20,7 +22,7 @@ namespace PathFinder.FeedBack.DAL.Controllers
 
         [Authorize]
         [HttpPost]
-        [Route("gfd")]
+        [Route(FeedBackRouteConstants.CreateComment)]
         public IHttpActionResult CreateComment(string comment)
         {
             string id = User.Identity.GetUserId();
@@ -36,7 +38,7 @@ namespace PathFinder.FeedBack.DAL.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("gfdsa")]
+        [Route(FeedBackRouteConstants.CreateUnAuthComment)]
         public IHttpActionResult CreateComment(CommentModel feedBackModel)
         {
             Comment comment = feedBackModel.CommentMapper();
