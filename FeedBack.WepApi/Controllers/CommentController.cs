@@ -14,10 +14,12 @@ namespace PathFinder.FeedBack.DAL.Controllers
     public class CommentController : ApiController
     {
         private readonly FeedBackContextQuery _query;
+        private readonly FeedBackCommandContext _command;
 
-        public CommentController(FeedBackContextQuery query)
+        public CommentController(FeedBackContextQuery query, FeedBackCommandContext command)
         {
             _query = query;
+            _command = command;
         }
 
         [Authorize]
@@ -29,8 +31,8 @@ namespace PathFinder.FeedBack.DAL.Controllers
             User user = _query.Users.GetUserById(id);
             if (user == null)
                 return NotFound();
-            Comment feedBack =_query.CreateComment(user, comment);
-            if(_query.SaveComment(feedBack))
+            Comment feedBack = _command.CreateComment(user, comment);
+            if(_command.SaveComment(feedBack))
                 return Ok();
             return BadRequest();
 
@@ -42,7 +44,7 @@ namespace PathFinder.FeedBack.DAL.Controllers
         public IHttpActionResult CreateComment(CommentModel feedBackModel)
         {
             Comment comment = feedBackModel.CommentMapper();
-            if(_query.SaveComment(comment))
+            if(_command.SaveComment(comment))
                 return Ok();
             return BadRequest();
         }

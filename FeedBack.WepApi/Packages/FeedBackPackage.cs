@@ -11,6 +11,7 @@ namespace FeedBack.WepApi.Packages
         {
             container.Register<FeedBackContext>(Lifestyle.Scoped);
             container.Register<IFeedBackContextQuery, FeedBackContextQuery>(Lifestyle.Scoped);
+            container.Register<IFeedBackCommandContext, FeedBackCommandContext>(Lifestyle.Scoped);
         }
     }
 }
