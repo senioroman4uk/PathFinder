@@ -36,6 +36,18 @@ namespace PathFinder.Security.UserManagement.Mappers
             };
         }
 
+        public static AppUser ToUserEntity(this UpdateUserModel model)
+        {
+            return new AppUser()
+            {
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                MiddleName = model.MiddleName,
+                PhoneNumber = model.PhoneNumber
+            };
+        }
+
         /// <summary>   An AppUser extension method that converts a user to a user model. </summary>
         ///
         /// <remarks>   Vladyslav, 24.05.2016. </remarks>
