@@ -14,7 +14,7 @@ namespace PathFinder.Security.UserManagement.Package
             container.Register<SecurityContext>(Lifestyle.Scoped);
             container.Register<IUserStore<AppUser, int>, AppUserStore>(Lifestyle.Scoped);
             container.Register<AppUserManager>(Lifestyle.Scoped);
-            container.Register<IRegisterUserCommand, RegisterUserCommand>(Lifestyle.Scoped);
+            container.Register<ISecurityContextCommand, SecurityContextCommand>(Lifestyle.Scoped);
 
             // User validator configuration
             container.RegisterInitializer<AppUserManager>((manager =>

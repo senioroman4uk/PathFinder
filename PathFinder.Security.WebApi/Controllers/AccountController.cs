@@ -23,10 +23,9 @@ namespace PathFinder.Security.UserManagement.Controllers
     public class AccountController : ApiController
     {
         /// <summary>   The register user command. </summary>
-        private readonly IRegisterUserCommand _registerUserCommand;
+        private readonly ISecurityContextCommand _securityContextCommand;
         /// <summary>   Manager for user. </summary>
         private readonly AppUserManager _userManager;
-        private readonly IUpdateUserCommand _updateUserContext;
         /// <summary>   Constructor. </summary>
         ///
         /// <remarks>   Vladyslav, 24.05.2016. </remarks>
@@ -34,12 +33,10 @@ namespace PathFinder.Security.UserManagement.Controllers
         /// <param name="registerUserCommand">  The register user command. </param>
         /// <param name="userManager">          Manager for user. </param>
 
-        public AccountController(IRegisterUserCommand registerUserCommand, AppUserManager userManager, 
-            IUpdateUserCommand updateUserContext)
+        public AccountController(ISecurityContextCommand securityContextCommand, AppUserManager userManager)
         {
-            _registerUserCommand = registerUserCommand;
+            _securityContextCommand = securityContextCommand;
             _userManager = userManager;
-            updateUserContext = _updateUserContext;
         }
 
         /// <summary>   Registers new user into the system. </summary>
@@ -55,7 +52,7 @@ namespace PathFinder.Security.UserManagement.Controllers
         [Route(SecurityRouteConstants.Register)]
         public async Task<IHttpActionResult> Register(RegisterUserModel model)
         {
-            AppUser user = await _registerUserCommand.RegisterUser(model);
+            AppUser user = await _securityContextCommand.RegisterUser(model);
 
             if (user == null)
                 return new StatusCodeResult((HttpStatusCode)422, this);
@@ -87,7 +84,7 @@ namespace PathFinder.Security.UserManagement.Controllers
         [Route(SecurityRouteConstants.AccountControllerRoutePrefix)]
         public IHttpActionResult UserUpdate(UpdateUserModel model)
         {
-            _updateUserContext.UpdateUser(model.ToUserEntity());
+            _securityContextCommand.UpdateUser(model.ToUserEntity());
             return Ok();
         }
     }
