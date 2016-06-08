@@ -26,7 +26,7 @@ namespace PathFinder.Security.UserManagement.Controllers
         private readonly IRegisterUserCommand _registerUserCommand;
         /// <summary>   Manager for user. </summary>
         private readonly AppUserManager _userManager;
-
+        private readonly IUpdateUserCommand _updateUserContext;
         /// <summary>   Constructor. </summary>
         ///
         /// <remarks>   Vladyslav, 24.05.2016. </remarks>
@@ -34,10 +34,12 @@ namespace PathFinder.Security.UserManagement.Controllers
         /// <param name="registerUserCommand">  The register user command. </param>
         /// <param name="userManager">          Manager for user. </param>
 
-        public AccountController(IRegisterUserCommand registerUserCommand, AppUserManager userManager)
+        public AccountController(IRegisterUserCommand registerUserCommand, AppUserManager userManager, 
+            IUpdateUserCommand updateUserContext)
         {
             _registerUserCommand = registerUserCommand;
             _userManager = userManager;
+            updateUserContext = _updateUserContext;
         }
 
         /// <summary>   Registers new user into the system. </summary>
@@ -83,11 +85,9 @@ namespace PathFinder.Security.UserManagement.Controllers
 
         [HttpPut]
         [Route(SecurityRouteConstants.AccountControllerRoutePrefix)]
-        public IHttpActionResult UserUpdate(UpdateUserModel request)
+        public IHttpActionResult UserUpdate(UpdateUserModel model)
         {
-            SecurityContext context = new SecurityContext();
-            context.UpdateAccount(request.FirstName, request.MiddleName, request.LastName, 
-                request.PhoneNumber, request.Email, request.Id);
+            _updateUserContext.UpdateUser(model.ToUserEntity());
             return Ok();
         }
     }
