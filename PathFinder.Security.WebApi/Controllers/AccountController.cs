@@ -80,5 +80,15 @@ namespace PathFinder.Security.UserManagement.Controllers
             UserModel model = user.ToUserModel();
             return Ok(model);
         }
+
+        [HttpPut]
+        [Route(SecurityRouteConstants.AccountControllerRoutePrefix)]
+        public IHttpActionResult UserUpdate(UpdateUserModel request)
+        {
+            SecurityContext context = new SecurityContext();
+            context.UpdateAccount(request.FirstName, request.MiddleName, request.LastName, 
+                request.PhoneNumber, request.Email, request.Id);
+            return Ok();
+        }
     }
 }
