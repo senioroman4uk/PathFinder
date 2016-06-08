@@ -1,11 +1,11 @@
-﻿using FeedBack.WepApi.Packages;
-using FluentValidation;
+﻿using FluentValidation;
 using PathFinder.Cars.WebApi.Package;
 using PathFinder.Trips.WebApi.Package;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using System;
 using System.Linq;
+using FeedBack.WepApi.Packages;
 using PathFinder.Security.UserManagement.Package;
 
 namespace PathFinder.EntryPoint
