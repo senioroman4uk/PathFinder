@@ -5,6 +5,7 @@ using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using System;
 using System.Linq;
+using FeedBack.WepApi.Packages;
 using PathFinder.Security.UserManagement.Package;
 
 namespace PathFinder.EntryPoint
@@ -25,7 +26,8 @@ namespace PathFinder.EntryPoint
             {
                 typeof(SecurityPackage).Assembly,
                 typeof(CarsPackage).Assembly,
-                typeof(TripsPackage).Assembly
+                typeof(TripsPackage).Assembly,
+                typeof(FeedBackPackage).Assembly
             });
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
             container.Register(typeof(IValidator<>), assemblies, Lifestyle.Singleton);

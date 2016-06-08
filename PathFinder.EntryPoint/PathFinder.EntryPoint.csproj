@@ -192,6 +192,10 @@
       <Project>{f979614e-8163-4371-9da5-4fdca6e36b62}</Project>
       <Name>PathFinder.Cars.WebApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PathFinder.FeedBack.WepApi\PathFinder.FeedBack.WepApi.csproj">
+      <Project>{0DD26009-84EC-4787-B5C8-80E6E7D62CA2}</Project>
+      <Name>PathFinder.FeedBack.WepApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PathFinder.Infrastructure\PathFinder.Infrastructure.csproj">
       <Project>{ED18084B-F3A3-4573-A1BD-EC6DDD5F462E}</Project>
       <Name>PathFinder.Infrastructure</Name>
