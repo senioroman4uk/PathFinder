@@ -115,6 +115,7 @@
     <Compile Include="Extensions\IPrincipalExtensions.cs" />
     <Compile Include="Extensions\UseOwinContextInjectorExtension.cs" />
     <Compile Include="HttpActionResults\PostResults.cs" />
+    <Compile Include="HttpActionResults\PutResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\IntValidator.cs" />
     <Compile Include="Validators\StringValidator.cs" />
