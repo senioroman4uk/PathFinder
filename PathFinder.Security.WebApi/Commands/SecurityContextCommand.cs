@@ -5,6 +5,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using PathFinder.Security.Authentication.Models;
+using PathFinder.Security.UserManagement.Models;
 
 namespace PathFinder.Security.UserManagement.Commands
 {
@@ -20,7 +21,7 @@ namespace PathFinder.Security.UserManagement.Commands
         /// <param name="password">Password of registred user</param>
         /// <returns>   A Task&lt;AppUser&gt; </returns>
         Task<IdentityResult> RegisterUser(AppUser user, string password);
-        void UpdateUser(AppUser user);
+        void UpdateUser(AppUser user, UpdateUserModel model);
     }
 
     /// <summary>   A register user command. </summary>
@@ -57,10 +58,15 @@ namespace PathFinder.Security.UserManagement.Commands
             return result;
         }
 
-        public void UpdateUser(AppUser user)
+        public void UpdateUser(AppUser userToUpdate, UpdateUserModel model)
         {
-            _userManager.Update(user);
+           userToUpdate.Email =  model.Email;
+           userToUpdate.FirstName = model.FirstName;
+           userToUpdate.LastName = model.LastName;
+           userToUpdate.MiddleName = model.MiddleName;
+           userToUpdate.PhoneNumber = model.PhoneNumber;
 
+           _userManager.Update(userToUpdate );
         }
     }
 }

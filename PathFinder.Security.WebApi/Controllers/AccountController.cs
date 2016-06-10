@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
+using Microsoft.AspNet.Identity;
 using PathFinder.Infrastructure.Extensions;
 using PathFinder.Infrastructure.HttpActionResults;
 using PathFinder.Security.Authentication.Models;
@@ -94,10 +95,13 @@ namespace PathFinder.Security.UserManagement.Controllers
             if (model.Id != userId)
                 return StatusCode(HttpStatusCode.Forbidden);
 
-            AppUser user = model.ToUserEntity();
-            _securityContextCommand.UpdateUser(user);
+            var userToUpdate = _userManager.FindById(model.Id);
+            if (userToUpdate == null)
+                return NotFound();
 
-            var response = user.ToUserModel();
+            _securityContextCommand.UpdateUser(userToUpdate, model);
+
+            var response = userToUpdate.ToUserModel();
             return PutResults.Accepted(this, response);
         }
     }
