@@ -97,17 +97,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\RegisterUserCommand.cs" />
+    <Compile Include="Commands\SecurityContextCommand.cs" />
     <Compile Include="Constants\EntityReturnUrls.cs" />
     <Compile Include="Constants\SecurityRouteConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
+    <Compile Include="Models\UpdateUserModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Package\SecurityPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\RegisterUserModelValidator.cs" />
+    <Compile Include="Validators\UpdateUserModelValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -2,11 +2,13 @@
 //
 // summary:	Implements the account controller class
 
-using System;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
+using Microsoft.AspNet.Identity;
+using PathFinder.Infrastructure.Extensions;
+using PathFinder.Infrastructure.HttpActionResults;
 using PathFinder.Security.Authentication.Models;
 using PathFinder.Security.UserManagement.Commands;
 using PathFinder.Security.UserManagement.Constants;
@@ -23,20 +25,19 @@ namespace PathFinder.Security.UserManagement.Controllers
     public class AccountController : ApiController
     {
         /// <summary>   The register user command. </summary>
-        private readonly IRegisterUserCommand _registerUserCommand;
+        private readonly ISecurityContextCommand _securityContextCommand;
         /// <summary>   Manager for user. </summary>
         private readonly AppUserManager _userManager;
-
         /// <summary>   Constructor. </summary>
         ///
         /// <remarks>   Vladyslav, 24.05.2016. </remarks>
         ///
-        /// <param name="registerUserCommand">  The register user command. </param>
+        /// <param name="securityContextCommand">  The security context user command. </param>
         /// <param name="userManager">          Manager for user. </param>
 
-        public AccountController(IRegisterUserCommand registerUserCommand, AppUserManager userManager)
+        public AccountController(ISecurityContextCommand securityContextCommand, AppUserManager userManager)
         {
-            _registerUserCommand = registerUserCommand;
+            _securityContextCommand = securityContextCommand;
             _userManager = userManager;
         }
 
@@ -53,12 +54,14 @@ namespace PathFinder.Security.UserManagement.Controllers
         [Route(SecurityRouteConstants.Register)]
         public async Task<IHttpActionResult> Register(RegisterUserModel model)
         {
-            AppUser user = await _registerUserCommand.RegisterUser(model);
+            var user = model.ToUserEntity();
+            var result = await _securityContextCommand.RegisterUser(user, model.Password);
 
-            if (user == null)
+            if (!result.Succeeded)
                 return new StatusCodeResult((HttpStatusCode)422, this);
 
-            return Created(String.Format(EntityReturnUrls.UserEndPoint, user.Id), user);
+            var response = user.ToUserModel();
+            return PostResults.Created(this, response);
         }
 
         /// <summary>   Finds user by id. </summary>
@@ -79,6 +82,27 @@ namespace PathFinder.Security.UserManagement.Controllers
 
             UserModel model = user.ToUserModel();
             return Ok(model);
+        }
+
+        [HttpPut]
+        [Route("")]
+        public IHttpActionResult UserUpdate(UpdateUserModel model)
+        {
+            int userId;
+            if (!User.TryGetUserId(out userId))
+                return Unauthorized();
+
+            if (model.Id != userId)
+                return StatusCode(HttpStatusCode.Forbidden);
+
+            var userToUpdate = _userManager.FindById(model.Id);
+            if (userToUpdate == null)
+                return NotFound();
+
+            _securityContextCommand.UpdateUser(userToUpdate, model);
+
+            var response = userToUpdate.ToUserModel();
+            return PutResults.Accepted(this, response);
         }
     }
 }
