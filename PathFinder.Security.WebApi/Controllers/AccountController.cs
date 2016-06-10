@@ -2,16 +2,18 @@
 //
 // summary:	Implements the account controller class
 
-using System;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
+using PathFinder.Infrastructure.Extensions;
+using PathFinder.Infrastructure.HttpActionResults;
 using PathFinder.Security.Authentication.Models;
 using PathFinder.Security.UserManagement.Commands;
 using PathFinder.Security.UserManagement.Constants;
 using PathFinder.Security.UserManagement.Mappers;
 using PathFinder.Security.UserManagement.Models;
+using PathFinder.Security.WebApi.Models;
 
 namespace PathFinder.Security.UserManagement.Controllers
 {
@@ -30,7 +32,7 @@ namespace PathFinder.Security.UserManagement.Controllers
         ///
         /// <remarks>   Vladyslav, 24.05.2016. </remarks>
         ///
-        /// <param name="registerUserCommand">  The register user command. </param>
+        /// <param name="securityContextCommand">  The security context user command. </param>
         /// <param name="userManager">          Manager for user. </param>
 
         public AccountController(ISecurityContextCommand securityContextCommand, AppUserManager userManager)
@@ -52,12 +54,14 @@ namespace PathFinder.Security.UserManagement.Controllers
         [Route(SecurityRouteConstants.Register)]
         public async Task<IHttpActionResult> Register(RegisterUserModel model)
         {
-            AppUser user = await _securityContextCommand.RegisterUser(model);
+            var user = model.ToUserEntity();
+            var result = await _securityContextCommand.RegisterUser(user, model.Password);
 
-            if (user == null)
+            if (!result.Succeeded)
                 return new StatusCodeResult((HttpStatusCode)422, this);
 
-            return Created(String.Format(EntityReturnUrls.UserEndPoint, user.Id), user);
+            var response = user.ToUserModel();
+            return PostResults.Created(this, response);
         }
 
         /// <summary>   Finds user by id. </summary>
@@ -84,6 +88,13 @@ namespace PathFinder.Security.UserManagement.Controllers
         [Route(SecurityRouteConstants.AccountControllerRoutePrefix)]
         public IHttpActionResult UserUpdate(UpdateUserModel model)
         {
+            int userId;
+            if (!User.TryGetUserId(out userId))
+                return Unauthorized();
+
+            if (model.Id != userId)
+                return StatusCode(HttpStatusCode.Forbidden);
+
             _securityContextCommand.UpdateUser(model.ToUserEntity());
             return Ok();
         }

@@ -112,6 +112,7 @@
     <Compile Include="ActionFilters\ModelStateFilterAttribute.cs" />
     <Compile Include="Constants\CommonRouteConstants.cs" />
     <Compile Include="Extensions\ApiControllerExtensions.cs" />
+    <Compile Include="Extensions\IPrincipalExtensions.cs" />
     <Compile Include="Extensions\UseOwinContextInjectorExtension.cs" />
     <Compile Include="HttpActionResults\PostResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

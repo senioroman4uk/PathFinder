@@ -5,9 +5,9 @@ using FeedBack.WepApi.Extensions;
 using FeedBack.WepApi.Mappers;
 using FeedBack.WepApi.Models;
 using FeedBack.WepApi.Query;
-using Microsoft.AspNet.Identity;
 using PathFinder.FeedBack.DAL.Model;
 using PathFinder.Infrastructure.Constants;
+using PathFinder.Infrastructure.Extensions;
 using PathFinder.Infrastructure.HttpActionResults;
 
 namespace FeedBack.WepApi.Controllers
@@ -28,10 +28,10 @@ namespace FeedBack.WepApi.Controllers
         [Route(FeedBackRouteConstants.CreateComment)]
         public IHttpActionResult CreateComment(string comment)
         {
-            if (User.Identity == null)
+            int userId;
+            if (!User.TryGetUserId(out userId))
                 return Unauthorized();
 
-            int userId = User.Identity.GetUserId<int>();
             User user = _query.Users.GetUserById(userId);
             if (user == null)
                 return NotFound();
