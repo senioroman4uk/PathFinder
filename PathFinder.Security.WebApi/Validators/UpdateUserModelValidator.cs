@@ -1,17 +1,17 @@
 ﻿using FluentValidation;
-using PathFinder.Security.WebApi.Constants;
+using PathFinder.Security.UserManagement.Constants;
 using PathFinder.Security.WebApi.Models;
 
-namespace PathFinder.Security.WebApi.Validation
+namespace PathFinder.Security.UserManagement.Validators
 {
-    class UpdateUserModelValidator : AbstractValidator<RegisterUserModel>
+    class UpdateUserModelValidator : AbstractValidator<UpdateUserModel>
     {
         public UpdateUserModelValidator()
         {
             RuleFor(model => model.FirstName).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
             RuleFor(model => model.MiddleName).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
             RuleFor(model => model.LastName).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
-            RuleFor(model => model.PhoneNumber).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().Matches(@"\+38\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}");
+            RuleFor(model => model.PhoneNumber).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().Matches(ValidationConstants.PhoneNumberRegex);
             RuleFor(model => model.Email).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().EmailAddress();
         }
     }
