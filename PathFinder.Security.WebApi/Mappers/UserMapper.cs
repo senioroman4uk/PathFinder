@@ -4,7 +4,6 @@
 
 using PathFinder.Security.Authentication.Models;
 using PathFinder.Security.UserManagement.Models;
-using PathFinder.Security.WebApi.Models;
 
 namespace PathFinder.Security.UserManagement.Mappers
 {

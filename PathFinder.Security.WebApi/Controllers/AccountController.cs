@@ -13,7 +13,6 @@ using PathFinder.Security.UserManagement.Commands;
 using PathFinder.Security.UserManagement.Constants;
 using PathFinder.Security.UserManagement.Mappers;
 using PathFinder.Security.UserManagement.Models;
-using PathFinder.Security.WebApi.Models;
 
 namespace PathFinder.Security.UserManagement.Controllers
 {
@@ -85,7 +84,7 @@ namespace PathFinder.Security.UserManagement.Controllers
         }
 
         [HttpPut]
-        [Route(SecurityRouteConstants.AccountControllerRoutePrefix)]
+        [Route("")]
         public IHttpActionResult UserUpdate(UpdateUserModel model)
         {
             int userId;
@@ -95,8 +94,11 @@ namespace PathFinder.Security.UserManagement.Controllers
             if (model.Id != userId)
                 return StatusCode(HttpStatusCode.Forbidden);
 
-            _securityContextCommand.UpdateUser(model.ToUserEntity());
-            return Ok();
+            AppUser user = model.ToUserEntity();
+            _securityContextCommand.UpdateUser(user);
+
+            var response = user.ToUserModel();
+            return PutResults.Accepted(this, response);
         }
     }
 }

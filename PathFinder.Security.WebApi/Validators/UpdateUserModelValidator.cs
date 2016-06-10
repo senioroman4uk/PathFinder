@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using PathFinder.Security.UserManagement.Constants;
-using PathFinder.Security.WebApi.Models;
+using PathFinder.Security.UserManagement.Models;
 
 namespace PathFinder.Security.UserManagement.Validators
 {
@@ -13,6 +13,7 @@ namespace PathFinder.Security.UserManagement.Validators
             RuleFor(model => model.LastName).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
             RuleFor(model => model.PhoneNumber).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().Matches(ValidationConstants.PhoneNumberRegex);
             RuleFor(model => model.Email).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().EmailAddress();
+            RuleFor(model => model.Id).GreaterThan(0);
         }
     }
 }

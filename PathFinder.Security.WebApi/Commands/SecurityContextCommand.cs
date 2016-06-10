@@ -4,12 +4,9 @@
 
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using PathFinder.Security.DAL.Entities;
-using PathFinder.Security.DAL.Managers;
-using PathFinder.Security.WebApi.Mappers;
-using PathFinder.Security.WebApi.Models;
+using PathFinder.Security.Authentication.Models;
 
-namespace PathFinder.Security.WebApi.Commands
+namespace PathFinder.Security.UserManagement.Commands
 {
     /// <summary>   Interface for register user command. </summary>
     ///
@@ -18,12 +15,11 @@ namespace PathFinder.Security.WebApi.Commands
     public interface ISecurityContextCommand
     {
         /// <summary>   Registers the user described by userModel. </summary>
-        ///
-        /// <param name="userModel">    The user model. </param>
-        ///
+        /// 
+        /// <param name="user">User that will be registred</param>
+        /// <param name="password">Password of registred user</param>
         /// <returns>   A Task&lt;AppUser&gt; </returns>
-
-        Task<AppUser> RegisterUser(RegisterUserModel userModel);
+        Task<IdentityResult> RegisterUser(AppUser user, string password);
         void UpdateUser(AppUser user);
     }
 
@@ -47,21 +43,18 @@ namespace PathFinder.Security.WebApi.Commands
             _userManager = userManager;
         }
 
-        /// <summary>   Registers the user described by userModel. </summary>
-        ///
-        /// <remarks>   Vladyslav, 24.05.2016. </remarks>
-        ///
-        /// <param name="userModel">    The user model. </param>
-        ///
+        ///  <summary>   Registers the user described by userModel. </summary>
+        /// 
+        ///  <remarks>   Vladyslav, 24.05.2016. </remarks>
+        /// 
+        ///  <param name="user">User that will be created. </param>
+        /// <param name="password">Password of created user</param>
         /// <returns>   A Task&lt;AppUser&gt; </returns>
-
-        public async Task<AppUser> RegisterUser(RegisterUserModel userModel)
+        public async Task<IdentityResult> RegisterUser(AppUser user, string password)
         {
-            var user = userModel.ToUserEntity();
+            IdentityResult result = await _userManager.CreateAsync(user, password);
 
-            IdentityResult result = await _userManager.CreateAsync(user, userModel.Password);
-
-            return result.Succeeded ? user : null;
+            return result;
         }
 
         public void UpdateUser(AppUser user)
