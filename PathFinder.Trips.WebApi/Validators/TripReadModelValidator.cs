@@ -11,7 +11,7 @@ namespace PathFinder.Trips.WebApi.Validators
             RuleFor(model => model.StartPoint).NotNull();
             RuleFor(model => model.EndPoint).NotNull();
             RuleFor(model => model.Algorithm).NotNull();
-            RuleFor(model => model.DepartureDate).Cascade(CascadeMode.StopOnFirstFailure).NotNull().GreaterThanOrEqualTo(DateTime.Now);
+            RuleFor(model => model.DepartureDate).Cascade(CascadeMode.StopOnFirstFailure).NotNull().GreaterThanOrEqualTo(DateTime.Now.Date);
             RuleFor(model => model.Price).Cascade(CascadeMode.StopOnFirstFailure).NotEmpty().GreaterThanOrEqualTo(0m);
         }
     }
