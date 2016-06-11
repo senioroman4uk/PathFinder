@@ -24,6 +24,6 @@ namespace PathFinder.Trips.WebApi.Models
     public class Route
     {
         public IList<int> Sequence { get; set; }
-        public int Distanse { get; set; }
+        public double Distanse { get; set; }
     }
 }

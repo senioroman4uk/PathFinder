@@ -60,12 +60,16 @@ namespace PathFinder.Trips.WebApi.Controllers
         ///
         /// <returns>   The new trip. </returns>
 
+        [AllowAnonymous]
         [HttpPost]
         [Route(TripsRouteConstants.CreateTrip)]
         public async Task<IHttpActionResult> CreateTrip(TripReadModel model)
         {
             var waypoints = model.WayPoints.Select(w => w.Place).ToList();
             waypoints.Insert(0, model.StartPoint);
+            if (waypoints.Count < 3)
+                return BadRequest("Too few waypoints");
+
             waypoints.Add(model.EndPoint);
 
             DistanseMatrixResponseModel distanseMatrixModel = await _distanceMatrixQuery.GetDistanceMatrix(waypoints);
@@ -82,6 +86,7 @@ namespace PathFinder.Trips.WebApi.Controllers
             return Ok(route);
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("calculateRoute")]
         public async Task<IHttpActionResult> CalculateRoute(string algorithm)
