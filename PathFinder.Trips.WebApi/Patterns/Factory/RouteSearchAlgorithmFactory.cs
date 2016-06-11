@@ -19,7 +19,8 @@ namespace PathFinder.Trips.WebApi.Patterns.Factory
             { "GridyAlgorithm", new GreadyRouteSearchAlgorithm() },
             { "BeeAlgorithm", new BeeRouteSearchAlgoritm() },
             { "BranchAndBoundAlgorithm", new BranchAndBoundRouteSearchAlgorithm() },
-            { "AntAlgorithm", new AntRouteSearchAlgorithm() }
+            { "AntAlgorithm", new AntRouteSearchAlgorithm() },
+            { "GeneticAlgorithm", new GeneticRouteSearchAlgorithm() }
         };
 
         /// <summary>   Gets route search algorithm. </summary>

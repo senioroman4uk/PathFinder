@@ -99,6 +99,7 @@
     <Compile Include="Patterns\Strategy\AntRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\BeeRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\BranchAndBoundRouteSearchAlgorithm.cs" />
+    <Compile Include="Patterns\Strategy\GeneticRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\GreadyRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\IRouteSearchAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
