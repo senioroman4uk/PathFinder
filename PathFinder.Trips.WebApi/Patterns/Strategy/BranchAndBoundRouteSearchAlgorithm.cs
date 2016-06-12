@@ -22,7 +22,16 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
                 if (currentState.IsTargetState(destination, weights.GetLength(0)))
                 {
                     if (record == null || currentState.Weight < record.Weight)
+                    {
                         record = currentState;
+                        var filteredQueue = new PriorityQueue<State>(new StateWeightComparer());
+                        foreach (var state in branchsToExpand)
+                        {
+                            if (record.Weight > state.Weight)
+                                filteredQueue.Insert(state);
+                        }
+                        branchsToExpand = filteredQueue;
+                    }
                 }
                 else
                 {

@@ -20,6 +20,11 @@ namespace PathFinder.Trips.WebApi.Patterns
 
             }
 
+            public PriorityQueue(IComparer<T> comparer) : this(new List<T>(), comparer)
+            {
+                
+            }
+
             public PriorityQueue(IEnumerable<T> collection, IComparer<T> comparer)
             {
                 _comparer = comparer;
