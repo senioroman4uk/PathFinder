@@ -16,7 +16,7 @@ namespace PathFinder.Trips.WebApi.Patterns.Factory
         /// <summary>   The known algorithms. </summary>
         private static readonly Dictionary<string, IRouteSearchAlgorithm> KnownAlgorithms = new Dictionary<string, IRouteSearchAlgorithm>
         {
-            { "GridyAlgorithm", new GreadyRouteSearchAlgorithm() },
+            { "GreedyAlgorithm", new GreedyRouteSearchAlgorithm() },
             { "BeeAlgorithm", new BeeRouteSearchAlgoritm() },
             { "BranchAndBoundAlgorithm", new BranchAndBoundRouteSearchAlgorithm() },
             { "AntAlgorithm", new AntRouteSearchAlgorithm() },

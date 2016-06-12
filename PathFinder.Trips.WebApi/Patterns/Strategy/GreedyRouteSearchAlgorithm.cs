@@ -14,7 +14,7 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
     ///
     /// <remarks>   Vladyslav, 24.05.2016. </remarks>
 
-    internal class GreadyRouteSearchAlgorithm : IRouteSearchAlgorithm
+    internal class GreedyRouteSearchAlgorithm : IRouteSearchAlgorithm
     {
         /// <summary>   Searches for the route. </summary>
         ///
