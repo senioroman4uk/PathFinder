@@ -76,8 +76,9 @@
   <ItemGroup>
     <Compile Include="Constants\TripsRouteConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
+    <Compile Include="Mappers\MatrixMapper.cs" />
     <Compile Include="Controllers\TripsQueryController.cs" />
-    <Compile Include="Extensions\DestinationMatrixResponseModelMapper.cs" />
+    <Compile Include="Mappers\DestinationMatrixResponseModelMapper.cs" />
     <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Extensions\LocationModelExtensions.cs" />
     <Compile Include="Extensions\TripExtensions.cs" />

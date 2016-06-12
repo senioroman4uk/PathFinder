@@ -2,11 +2,6 @@
 //
 // summary:	Implements the destination matrix response model mapper class
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PathFinder.Trips.WebApi.Models;
 
 namespace PathFinder.Trips.WebApi.Extensions
