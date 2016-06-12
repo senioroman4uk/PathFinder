@@ -2,8 +2,6 @@
 //
 // summary:	Implements the igreadyroutesearchalgorithm class
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using PathFinder.Trips.WebApi.Models;

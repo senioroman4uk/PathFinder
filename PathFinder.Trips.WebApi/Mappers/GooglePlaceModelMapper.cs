@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Spatial;
+﻿using System.Data.Entity.Spatial;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PathFinder.Trips.DAL.Model;
 using PathFinder.Trips.WebApi.Models;
 

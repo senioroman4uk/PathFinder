@@ -3,7 +3,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using PathFinder.Cars.DAL.Model;
-using PathFinder.Cars.WebApi.Queries;
 
 namespace PathFinder.Cars.WebApi.Extensions
 {

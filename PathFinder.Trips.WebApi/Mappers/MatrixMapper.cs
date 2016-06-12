@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PathFinder.Trips.WebApi.Controllers
+namespace PathFinder.Trips.WebApi.Mappers
 {
     public static class MatrixMapper
     {

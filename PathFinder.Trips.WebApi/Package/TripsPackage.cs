@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Net.Http;
+﻿using System.Net.Http;
 using PathFinder.Trips.DAL.Model;
 using PathFinder.Trips.WebApi.Patterns.Factory;
 using PathFinder.Trips.WebApi.Queries;

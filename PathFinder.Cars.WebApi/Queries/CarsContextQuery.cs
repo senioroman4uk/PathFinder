@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using PathFinder.Cars.DAL.Model;
 
 namespace PathFinder.Cars.WebApi.Queries

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Http;
 
 namespace PathFinder.Trips.WebApi.Models
 {

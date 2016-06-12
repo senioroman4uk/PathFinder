@@ -9,9 +9,8 @@
 
 namespace PathFinder.Cars.DAL.Model
 {
-    using System;
     using System.Collections.Generic;
-    
+
     public partial class CarBrand
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
