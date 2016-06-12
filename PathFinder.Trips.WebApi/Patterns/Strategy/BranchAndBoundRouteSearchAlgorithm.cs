@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using PathFinder.Trips.WebApi.Models;
+using PathFinder.Trips.WebApi.Patterns.EightPuzzle.Domain;
 
 namespace PathFinder.Trips.WebApi.Patterns.Strategy
 {
@@ -9,16 +10,14 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
     {
         public Route FindRoute(double[,] weights, int origin, int destination)
         {
-            var initialState = new State {Target = origin, Weight = 0d, Path = new List<int> {origin}};
+            var initialState = new State { Target = origin, Weight = 0d, Path = new List<int> { origin } };
             State record = null;
 
-            var branchsToExpand = new Dictionary<int, State>() {{initialState.Target, initialState}};
+            var branchsToExpand = new PriorityQueue<State>(new [] { initialState }, new StateWeightComparer());
             while (branchsToExpand.Count > 0)
             {
-                var currentState =
-                    branchsToExpand.Aggregate(
-                        (min, currentItem) => min.Value.Weight > currentItem.Value.Weight ? currentItem : min).Value;
-                branchsToExpand.Remove(currentState.Target);
+                // TODO: Needs to be optimized
+                var currentState = branchsToExpand.ExtractMin();
 
                 if (currentState.IsTargetState(destination, weights.GetLength(0)))
                 {
@@ -27,17 +26,10 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
                 }
                 else
                 {
-                    var branches = currentState.Branch(weights);
+                    var branches = currentState.Branch(weights, destination);
                     foreach (var branch in branches)
                     {
-                        if (!branchsToExpand.ContainsKey(branch.Target))
-                        {
-                            branchsToExpand.Add(branch.Target, branch);
-                        }
-                        else if (branchsToExpand[branch.Target].Weight > branch.Weight)
-                        {
-                            branchsToExpand[branch.Target] = branch;
-                        }
+                        branchsToExpand.Insert(branch);
                     }
                 }
             }
@@ -56,17 +48,17 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
         public double Weight { get; set; }
         public List<int> Path { get; set; }
 
-        public IEnumerable<State> Branch(double[,] weights)
+        public IEnumerable<State> Branch(double[,] weights, int destination)
         {
             for (int i = 0; i < weights.GetLength(0); i++)
             {
-                if (Path.Contains(i))
+                if (Path.Contains(i) || (i == destination && Path.Count != weights.GetLength(0) - 1))
                     continue;
 
                 var newPath = new List<int>(Path) {i};
                 var weight = Weight;
                 var target = Target;
-                yield return new State() {Weight = weight + weights[target, i], Path = newPath, Target = i};
+                yield return new State { Weight = weight + weights[target, i], Path = newPath, Target = i };
             }
         }
 
@@ -80,12 +72,23 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
     {
         public static Route ToRoute(this State state)
         {
-            return new Route()
+            return new Route
             {
-                Distanse = (int) state.Weight,
+                Distanse = state.Weight,
                 Sequence = state.Path
             };
         }
         
+    }
+
+    internal class StateWeightComparer : IComparer<State>
+    {
+        public int Compare(State x, State y)
+        {
+            if (x.Weight < y.Weight)
+                return -1;
+
+            return x.Weight > y.Weight ? 1 : 0;
+        }
     }
 }

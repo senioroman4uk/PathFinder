@@ -96,6 +96,7 @@
     <Compile Include="Models\WayPointModel.cs" />
     <Compile Include="Patterns\Factory\IRouteSearchAlgorithmFactory.cs" />
     <Compile Include="Patterns\Factory\RouteSearchAlgorithmFactory.cs" />
+    <Compile Include="Patterns\PriorityQueue.cs" />
     <Compile Include="Patterns\Strategy\AntRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\BeeRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\BranchAndBoundRouteSearchAlgorithm.cs" />
