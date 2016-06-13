@@ -13,32 +13,33 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
             var initialState = new State { Target = origin, Weight = 0d, Path = new List<int> { origin } };
             State record = null;
 
-            var branchsToExpand = new PriorityQueue<State>(new [] { initialState }, new StateWeightComparer());
-            while (branchsToExpand.Count > 0)
+            var brancehsToExpand = new PriorityQueue<State>(new [] { initialState }, new StateWeightComparer());
+            while (brancehsToExpand.Count > 0)
             {
                 // TODO: Needs to be optimized
-                var currentState = branchsToExpand.ExtractMin();
+                var currentState = brancehsToExpand.ExtractMin();
 
                 if (currentState.IsTargetState(destination, weights.GetLength(0)))
                 {
-                    if (record == null || currentState.Weight < record.Weight)
+                    if (record != null && (currentState.Weight >= record.Weight))
+                        continue;
+
+                    record = currentState;
+                    var filteredQueue = new PriorityQueue<State>(new StateWeightComparer());
+                    foreach (var branch in brancehsToExpand)
                     {
-                        record = currentState;
-                        var filteredQueue = new PriorityQueue<State>(new StateWeightComparer());
-                        foreach (var state in branchsToExpand)
-                        {
-                            if (record.Weight > state.Weight)
-                                filteredQueue.Insert(state);
-                        }
-                        branchsToExpand = filteredQueue;
+                        if (branch.Weight < record.Weight)
+                            filteredQueue.Insert(branch);
                     }
+                    brancehsToExpand = filteredQueue;
                 }
                 else
                 {
                     var branches = currentState.Branch(weights, destination);
                     foreach (var branch in branches)
                     {
-                        branchsToExpand.Insert(branch);
+                        if (record == null || branch.Weight < record.Weight)
+                            brancehsToExpand.Insert(branch);
                     }
                 }
             }

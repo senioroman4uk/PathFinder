@@ -5,6 +5,8 @@ using PathFinder.Trips.WebApi.Models;
 
 namespace PathFinder.Trips.WebApi.Patterns.Strategy
 {
+
+    // TODO: fix cycling
     public class BeeRouteSearchAlgoritm : IRouteSearchAlgorithm
     {
         private BeeSearchParameters _parameters;

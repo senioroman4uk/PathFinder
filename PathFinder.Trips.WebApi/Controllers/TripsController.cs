@@ -28,6 +28,8 @@ namespace PathFinder.Trips.WebApi.Controllers
     [RoutePrefix(TripsRouteConstants.TripsControllerRoutePrefix)]
     public class TripsController : ApiController
     {
+        private const int MaxMatrixSize = 10;
+
         /// <summary>   The distance matrix query. </summary>
         private readonly IDistanceMatrixQuery _distanceMatrixQuery;
 
@@ -105,6 +107,25 @@ namespace PathFinder.Trips.WebApi.Controllers
             var matrix = parsedMatrix.ToSquareMatrix();
             Route route = _routeService.CalculateRoute(matrix, origin - 1, destination - 1, algorithm);
             return Ok(route);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("calculateRoute")]
+        public IHttpActionResult CalculateRoute(string algorithm, int origin, int destination, int size)
+        {
+            if (!ValidateBoundaryPoints(origin, destination, size) || size > MaxMatrixSize)
+                return StatusCode((HttpStatusCode)422);
+
+            var random = new Random();
+            double[,] matrix = new double[size,size];
+            for (int i = 0; i < size; i++)
+                for (int j = 0; j < size; j++)
+                    matrix[i, j] = random.Next(10, 1000);
+   
+
+            Route route = _routeService.CalculateRoute(matrix, origin - 1, destination - 1, algorithm);
+            return Ok(new { Matrix = matrix, Route = route });
         }
 
         private bool ValidateBoundaryPoints(int origin, int destination, int size)
