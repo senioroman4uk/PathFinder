@@ -28,6 +28,8 @@ namespace PathFinder.Trips.WebApi.Controllers
     [RoutePrefix(TripsRouteConstants.TripsControllerRoutePrefix)]
     public class TripsController : ApiController
     {
+        private const int MaxMatrixSize = 10;
+
         /// <summary>   The distance matrix query. </summary>
         private readonly IDistanceMatrixQuery _distanceMatrixQuery;
 
@@ -67,8 +69,6 @@ namespace PathFinder.Trips.WebApi.Controllers
         {
             var waypoints = model.WayPoints.Select(w => w.Place).ToList();
             waypoints.Insert(0, model.StartPoint);
-            if (waypoints.Count < 3)
-                return BadRequest("Too few waypoints");
 
             waypoints.Add(model.EndPoint);
 
@@ -78,7 +78,8 @@ namespace PathFinder.Trips.WebApi.Controllers
                 throw new ApplicationException("Invalid response from distanse matrix API");
 
             double[,] matrix = distanseMatrixModel.ToArray();
-            Route route = _routeService.CalculateRoute(matrix, 0, waypoints.Count - 1, model.Algorithm);
+
+            var route = _routeService.CalculateRoute(matrix, 0, waypoints.Count - 1, model.Algorithm);
             var trip = model.ToEntity();
             _context.Trips.Add(trip);
             await _context.SaveChangesAsync();
@@ -89,7 +90,7 @@ namespace PathFinder.Trips.WebApi.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("calculateRoute")]
-        public async Task<IHttpActionResult> CalculateRoute(string algorithm)
+        public async Task<IHttpActionResult> CalculateRoute(string algorithm, int origin, int destination)
         {
             if (!Request.Content.IsMimeMultipartContent())
                 return StatusCode(HttpStatusCode.UnsupportedMediaType);
@@ -100,15 +101,39 @@ namespace PathFinder.Trips.WebApi.Controllers
                 return BadRequest("You have to add file with matrix for procesing");
 
             var parsedMatrix = await GetMatrixAsync(provider);
-            if (!parsedMatrix.Validate())
+            if (!parsedMatrix.Validate() || !ValidateBoundaryPoints(origin, destination, parsedMatrix.Count))
                 return StatusCode((HttpStatusCode)422);
 
             var matrix = parsedMatrix.ToSquareMatrix();
-            Route route = _routeService.CalculateRoute(matrix, 0, matrix.GetLength(0) - 1, algorithm);
+            Route route = _routeService.CalculateRoute(matrix, origin - 1, destination - 1, algorithm);
             return Ok(route);
         }
 
-        private static async Task<List<List<double>>> GetMatrixAsync(MultipartMemoryStreamProvider provider)
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("calculateRoute")]
+        public IHttpActionResult CalculateRoute(string algorithm, int origin, int destination, int size)
+        {
+            if (!ValidateBoundaryPoints(origin, destination, size) || size > MaxMatrixSize)
+                return StatusCode((HttpStatusCode)422);
+
+            var random = new Random();
+            double[,] matrix = new double[size,size];
+            for (int i = 0; i < size; i++)
+                for (int j = 0; j < size; j++)
+                    matrix[i, j] = random.Next(10, 1000);
+   
+
+            Route route = _routeService.CalculateRoute(matrix, origin - 1, destination - 1, algorithm);
+            return Ok(new { Matrix = matrix, Route = route });
+        }
+
+        private bool ValidateBoundaryPoints(int origin, int destination, int size)
+        {
+            return origin != destination && origin > 0 && destination > 0 && origin <= size && destination <= size;
+        }
+
+        private async Task<List<List<double>>> GetMatrixAsync(MultipartMemoryStreamProvider provider)
         {
             var file = provider.Contents.First();
             IList<string> matrixRows = new List<string>();
@@ -124,31 +149,6 @@ namespace PathFinder.Trips.WebApi.Controllers
 
             var parsedMatrix = matrixRows.Select(_ => _.Split().Select(double.Parse).ToList()).ToList();
             return parsedMatrix;
-        }
-    }
-
-    public static class MatrixMapper
-    {
-        public static bool Validate(this List<List<double>> parsedMatrix)
-        {
-            int length = parsedMatrix.Count;
-
-            return parsedMatrix.All(row => row.Count == length);
-        }
-
-        public static double[,] ToSquareMatrix(this List<List<double>> parsedMatrix)
-        {
-            double[,] matrix = new double[parsedMatrix.Count, parsedMatrix.Count];
-
-            for (int i = 0; i < parsedMatrix.Count; i++)
-            {
-                for (int j = 0; j < parsedMatrix[i].Count; j++)
-                {
-                    matrix[i, j] = parsedMatrix[i][j];
-                }
-            }
-
-            return matrix;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using PathFinder.Security.Authentication.Models;
 using PathFinder.Security.UserManagement.Commands;
 using SimpleInjector;

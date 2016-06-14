@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PathFinder.Trips.WebApi.Patterns
+﻿namespace PathFinder.Trips.WebApi.Patterns
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -18,6 +12,11 @@ namespace PathFinder.Trips.WebApi.Patterns
             public PriorityQueue() : this(new List<T>(), Comparer<T>.Default)
             {
 
+            }
+
+            public PriorityQueue(IComparer<T> comparer) : this(new List<T>(), comparer)
+            {
+                
             }
 
             public PriorityQueue(IEnumerable<T> collection, IComparer<T> comparer)

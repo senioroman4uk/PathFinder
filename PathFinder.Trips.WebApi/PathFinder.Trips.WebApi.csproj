@@ -76,8 +76,9 @@
   <ItemGroup>
     <Compile Include="Constants\TripsRouteConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
+    <Compile Include="Mappers\MatrixMapper.cs" />
     <Compile Include="Controllers\TripsQueryController.cs" />
-    <Compile Include="Extensions\DestinationMatrixResponseModelMapper.cs" />
+    <Compile Include="Mappers\DestinationMatrixResponseModelMapper.cs" />
     <Compile Include="Extensions\DoubleExtensions.cs" />
     <Compile Include="Extensions\LocationModelExtensions.cs" />
     <Compile Include="Extensions\TripExtensions.cs" />
@@ -101,7 +102,7 @@
     <Compile Include="Patterns\Strategy\BeeRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\BranchAndBoundRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\GeneticRouteSearchAlgorithm.cs" />
-    <Compile Include="Patterns\Strategy\GreadyRouteSearchAlgorithm.cs" />
+    <Compile Include="Patterns\Strategy\GreedyRouteSearchAlgorithm.cs" />
     <Compile Include="Patterns\Strategy\IRouteSearchAlgorithm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\TripReadModel.cs" />

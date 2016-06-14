@@ -2,11 +2,7 @@
 //
 // summary:	Implements the distansematrixresponsevalidator class
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PathFinder.Trips.WebApi.Constants;
 using PathFinder.Trips.WebApi.Models;
 

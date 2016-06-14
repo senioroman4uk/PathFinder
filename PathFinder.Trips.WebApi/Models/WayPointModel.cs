@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PathFinder.Trips.WebApi.Models
+﻿namespace PathFinder.Trips.WebApi.Models
 {
     public class WayPointModel
     {

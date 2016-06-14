@@ -2,9 +2,8 @@
 //
 // summary:	Implements the igreadyroutesearchalgorithm class
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Linq;
 using PathFinder.Trips.WebApi.Models;
 
@@ -14,7 +13,7 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
     ///
     /// <remarks>   Vladyslav, 24.05.2016. </remarks>
 
-    internal class GreadyRouteSearchAlgorithm : IRouteSearchAlgorithm
+    internal class GreedyRouteSearchAlgorithm : IRouteSearchAlgorithm
     {
         /// <summary>   Searches for the route. </summary>
         ///
@@ -29,31 +28,32 @@ namespace PathFinder.Trips.WebApi.Patterns.Strategy
         public Route FindRoute(double[,] weights, int origin, int destination)
         {
             HashSet<int> route = new HashSet<int>(new[] { origin });
-            int distanse = 0;
-            int waypointsToFind = weights.GetLength(0) - 2;
-            int previous = 0;
+            double distanse = 0;
+            int waypointsToFind = weights.GetLength(0);
+            int previous = origin;
 
             // we know our first and last point. We don't need to find them
-            for (int i = 0; i < waypointsToFind; i++)
+            for (int i = 1; i < waypointsToFind - 1; i++)
             {
-                int min = int.MaxValue;
-                int index = 0;
-                for (int j = 1; j < waypointsToFind + 1; j++)
+                double min = int.MaxValue;
+                int index = -1;
+                for (int j = 0; j < waypointsToFind; j++)
                 {
-                    if (i == j || route.Contains(j))
+                    if(previous == j || route.Contains(j) || j == destination)
                         continue;
 
                     if (weights[previous, j] < min)
                     {
-                        min = (int)weights[previous, j];
+                        min = weights[previous, j];
                         index = j;
                     }
                 }
                 route.Add(index);
-                distanse += (int)weights[previous, index];
+                distanse += weights[previous, index];
                 previous = index;
             }
             route.Add(destination);
+            distanse += weights[previous, destination];
 
             return new Route() { Distanse = distanse, Sequence = route.ToList() };
         }
