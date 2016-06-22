@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/r6wo04sk4ufsactw?svg=true)](https://ci.appveyor.com/project/senioroman4uk/pathfinder)
