@@ -1,0 +1,28 @@
+-
+  branches:
+    only:
+      - develop
+  version: 1.0.{build}
+  before_build:
+  - ps: nuget restore PathFinder.sln
+  build:
+    verbosity: minimal
+-
+  branches:
+    only:
+      - /feature\/.*/
+  version: 1.0.{build}-{branch}
+  before_build:
+  - ps: nuget restore PathFinder.sln
+  build:
+    verbosity: minimal
+
+-
+  branches:
+    only:
+      - /hotfix\/.*/
+  version: 1.0.{build}-{branch}
+  before_build:
+  - ps: nuget restore PathFinder.sln
+  build:
+    verbosity: minimal
